@@ -45,7 +45,7 @@
             z-index: 1000;
             border-right: 1px solid var(--border-color);
             transition: transform 0.3s ease;
-            overflow-y: auto;
+            overflow-y: auto; /* Ensure scrollable on mobile */
             -webkit-overflow-scrolling: touch;
             touch-action: pan-y;
         }
@@ -82,6 +82,7 @@
             height: 60px;
             display: block;
             margin: 0 auto;
+            background: transparent;
         }
 
         .logo p {
@@ -142,9 +143,14 @@
             background: var(--secondary-bg);
             border: 1px solid var(--border-color);
             color: var(--accent-yellow);
-            padding: 0.5rem;
+            padding: 1rem; /* Increased from 0.5rem for larger size */
+            font-size: 2rem; /* Increased for better visibility */
+            min-width: 50px; /* Minimum width for tap area */
+            min-height: 50px; /* Minimum height for tap area */
             border-radius: 5px;
             cursor: pointer;
+            text-align: center;
+            line-height: 50px; /* Center the icon vertically */
         }
 
         /* Main Content */
@@ -232,6 +238,10 @@
             max-width: 80px;
             height: auto;
             margin-bottom: 1rem;
+            background: transparent;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero h1 {
@@ -477,6 +487,9 @@
 
             .sidebar {
                 transform: translateX(-100%);
+                height: 100vh; /* Ensure full height for scrolling */
+                overflow-y: auto; /* Ensure scrollable */
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
             }
 
             .sidebar.mobile-visible {
@@ -496,11 +509,11 @@
             }
 
             .hero-logo {
-                max-width: 80px;
+                max-width: 60px;
             }
 
             .logo img {
-                max-width: 80px;
+                max-width: 50px;
             }
 
             .page-title {
@@ -654,7 +667,7 @@
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <img src="kingempire.jpg" alt="KING EMPIRE" class="hero-logo">
+                    <img src="kingempire2-transparent.png" alt="KING EMPIRE" class="hero-logo">
                     <h1>KING EMPIRE</h1>
                     <p>Elevating nightlife experiences with world-class artists and unforgettable events</p>
                     <button class="cta-button" onclick="showPage('contact', null)">Contact Us</button>
@@ -907,8 +920,9 @@
                         <p><a href="tel:+255696798889" class="contact-link">+255 696 798 889</a></p>
                     </div>
                     <div>
-                       <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📍 Location:</strong></p>
-           <p><a href="https://www.google.com/maps/dir/?api=1&destination=Warehouse,+Haile+Selassie+Road,+Masaki,+Dar+es+Salaam,+Tanzania" target="_blank" class="contact-link">Warehouse, Haile Selassie Road, Dar es Salaam</a></p>
+                        <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📍 Location:</strong></p>
+                        <p><a href="https://www.google.com/maps/dir/?api=1&destination=Warehouse,+Haile+Selassie+Road,+Masaki,+Dar+es+Salaam,+Tanzania" target="_blank" class="contact-link">Warehouse, Haile Selassie Road, Dar es Salaam</a></p>
+                        <p style="color: var(--text-gray); font-size: 0.9rem;">(Get directions in Google Maps)</p>
                     </div>
                 </div>
                 <div class="social-links">
@@ -1097,6 +1111,3 @@
     </script>
 </body>
 </html>
-
-
-
