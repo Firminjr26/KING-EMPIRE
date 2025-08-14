@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KING EMPIRE - Premium Event Hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -29,6 +30,7 @@
             color: var(--text-white);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Sidebar Navigation */
@@ -44,6 +46,8 @@
             border-right: 1px solid var(--border-color);
             transition: transform 0.3s ease;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
         }
 
         .sidebar::-webkit-scrollbar {
@@ -69,19 +73,15 @@
 
         .logo {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             padding: 0 2rem;
         }
 
-        .logo h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--accent-yellow), #fff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .logo img {
+            max-width: 60px;
+            height: 60px;
+            display: block;
+            margin: 0 auto;
         }
 
         .logo p {
@@ -194,21 +194,44 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('home.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
             overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            z-index: 1;
         }
 
         .hero-content {
             max-width: 800px;
             z-index: 2;
+            position: relative;
+        }
+
+        .hero-logo {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 1rem;
         }
 
         .hero h1 {
@@ -387,66 +410,63 @@
             font-size: 0.9rem;
         }
 
-        /* Contact Form */
-        .contact-form {
+        /* Contact Styles */
+        .contact-info {
             max-width: 600px;
             margin: 0 auto;
             background: var(--secondary-bg);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid var(--border-color);
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--accent-yellow);
-            font-weight: bold;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-white);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-yellow);
-        }
-
-        .form-textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            width: 100%;
+        .get-in-touch-button {
+            display: inline-block;
             background: linear-gradient(45deg, var(--accent-yellow), var(--accent-yellow-dim));
             color: var(--primary-bg);
-            padding: 1rem;
-            border: none;
-            border-radius: 8px;
+            padding: 1rem 2rem;
             font-size: 1.1rem;
             font-weight: bold;
-            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 2rem;
         }
 
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        .get-in-touch-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-white);
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-yellow);
+        }
+
+        .contact-link {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--text-white);
         }
 
         /* Responsive Design */
@@ -467,16 +487,20 @@
                 margin-left: 0;
             }
 
-            .hero {
-                background-attachment: scroll;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero p {
                 font-size: 1.2rem;
+            }
+
+            .hero-logo {
+                max-width: 80px;
+            }
+
+            .logo img {
+                max-width: 80px;
             }
 
             .page-title {
@@ -492,8 +516,20 @@
                 gap: 1rem;
             }
 
-            .contact-form {
+            .contact-info {
                 margin: 0 1rem;
+            }
+
+            .hero-video {
+                object-fit: cover;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .social-link {
+                font-size: 1.8rem;
             }
         }
 
@@ -576,7 +612,7 @@
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
         <div class="logo">
-            <h1>KING EMPIRE</h1>
+            <img src="kingempire.jpg" alt="KING EMPIRE">
             <p>Premium Event Hosting</p>
         </div>
         <ul class="nav-menu">
@@ -612,7 +648,13 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <section class="hero">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="background2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-overlay"></div>
                 <div class="hero-content">
+                    <img src="kingempire.jpg" alt="KING EMPIRE" class="hero-logo">
                     <h1>KING EMPIRE</h1>
                     <p>Elevating nightlife experiences with world-class artists and unforgettable events</p>
                     <button class="cta-button" onclick="showPage('contact', null)">Contact Us</button>
@@ -653,7 +695,7 @@
                 <div class="slide">🎤</div>
                 <div class="slide">🎵</div>
                 <div class="slide">✨</div>
-                 <button class="slide-nav prev" onclick="changeSlide(-1)">&lt;</button>
+                <button class="slide-nav prev" onclick="changeSlide(-1)">&lt;</button>
                 <button class="slide-nav next" onclick="changeSlide(1)">&gt;</button>
             </div>
             <div class="slide-controls">
@@ -853,49 +895,25 @@
                 <h1 class="page-title">Contact Us</h1>
                 <p class="page-subtitle">Get in touch for more information about our events</p>
             </div>
-            <div class="contact-form">
-                <form onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label class="form-label" for="name">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
+            <div class="contact-info">
+                <a href="mailto:info@kingempire.co.tz" class="get-in-touch-button">Get in Touch</a>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
+                    <div>
+                        <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📧 Email:</strong></p>
+                        <p><a href="mailto:info@kingempire.co.tz" class="contact-link">info@kingempire.co.tz</a></p>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
+                    <div>
+                        <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📱 Phone:</strong></p>
+                        <p><a href="tel:+255696798889" class="contact-link">+255 696 798 889</a></p>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                    <div>
+                        <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📍 Location:</strong></p>
+                        <p><a href="https://maps.app.goo.gl/2M2m3Y5E7VqC8p5q6" target="_blank" class="contact-link">Warehouse, Haile Selassie Road, Dar es Salaam</a></p>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="message">Your Message</label>
-                        <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell us about your inquiry or feedback" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
-            </div>
-            
-            <div style="margin-top: 3rem; text-align: center;">
-                <div style="background: var(--secondary-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color); max-width: 600px; margin: 0 auto;">
-                    <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">Get In Touch</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                        <div>
-                            <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📧 Email:</strong></p>
-                            <p style="color: var(--accent-yellow);">info@kingempire.co.tz</p>
-                        </div>
-                        <div>
-                            <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📱 Phone:</strong></p>
-                            <p style="color: var(--accent-yellow);">+255 123 456 789</p>
-                        </div>
-                        <div>
-                            <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📍 Location:</strong></p>
-                            <p style="color: var(--accent-yellow);">Arusha, Tanzania</p>
-                        </div>
-                        <div>
-                            <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>🕒 Business Hours:</strong></p>
-                            <p style="color: var(--accent-yellow);">Mon-Fri: 9AM-6PM</p>
-                        </div>
-                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/kingempire_tz?igsh=aHZieTN4OW91Zm8z" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.snapchat.com/YB6tC0JI" target="_blank" class="social-link"><i class="fab fa-snapchat"></i></a>
                 </div>
             </div>
         </div>
@@ -935,6 +953,23 @@
             e.preventDefault();
             this.scrollTop += e.deltaY;
         });
+
+        // Enhanced touch scrolling for sidebar
+        let touchStartY = 0;
+        let touchStartScroll = 0;
+        const sidebar = document.getElementById('sidebar');
+
+        sidebar.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartScroll = this.scrollTop;
+        });
+
+        sidebar.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            const touchY = e.touches[0].clientY;
+            const deltaY = touchStartY - touchY;
+            this.scrollTop = touchStartScroll + deltaY;
+        }, { passive: false });
 
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
@@ -985,21 +1020,6 @@
 
         // Start auto slideshow
         setInterval(autoSlide, 4000);
-
-        // Contact form handling
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            
-            // Show success message
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-            
-            // Reset form
-            event.target.reset();
-        }
 
         // Gallery item click handler
         document.querySelectorAll('.gallery-item').forEach(item => {
@@ -1076,5 +1096,4 @@
         };
     </script>
 </body>
-
 </html>
