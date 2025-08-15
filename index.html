@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,10 @@
             --hover-bg: #2a2a2a;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: var(--primary-bg);
@@ -45,7 +50,7 @@
             z-index: 1000;
             border-right: 1px solid var(--border-color);
             transition: transform 0.3s ease;
-            overflow-y: auto; /* Ensure scrollable on mobile */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             touch-action: pan-y;
         }
@@ -143,37 +148,31 @@
             background: var(--secondary-bg);
             border: 1px solid var(--border-color);
             color: var(--accent-yellow);
-            padding: 0.75rem; /* Increased from 0.5rem for larger size */
-            font-size: 1.5rem; /* Increased for better visibility */
-            min-width: 40px; /* Minimum width for tap area */
-            min-height: 40px; /* Minimum height for tap area */
+            padding: 0.75rem;
+            font-size: 1.5rem;
+            min-width: 40px;
+            min-height: 40px;
             border-radius: 5px;
             cursor: pointer;
             text-align: center;
-            line-height: 40px; /* Center the icon vertically */
+            line-height: 40px;
         }
 
         /* Main Content */
         .main-content {
             margin-left: 280px;
-            min-height: 100vh;
             transition: margin-left 0.3s ease;
         }
 
         /* Page Sections */
-        .page {
-            display: none;
-            padding: 2rem;
-            animation: fadeIn 0.5s ease;
+        .page-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            position: relative;
         }
 
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .page-section:target {
+            scroll-margin-top: 0px;
         }
 
         .page-header {
@@ -274,6 +273,8 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -296,6 +297,7 @@
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
             cursor: pointer;
+            position: relative;
         }
 
         .gallery-item:hover {
@@ -315,6 +317,13 @@
             font-size: 3rem;
             position: relative;
             overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0;
         }
 
         .gallery-img::before {
@@ -348,6 +357,239 @@
         .gallery-info p {
             color: var(--text-gray);
             font-size: 0.9rem;
+        }
+
+        .image-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--accent-yellow);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Enhanced Slideshow Styles */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            background: var(--secondary-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .slide-controls {
+            text-align: center;
+            padding: 1rem;
+            background: var(--secondary-bg);
+        }
+
+        .slide-dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: var(--text-dark-gray);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slide-dot.active, .slide-dot:hover {
+            background-color: var(--accent-yellow);
+        }
+
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: var(--accent-yellow);
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-nav:hover {
+            background: rgba(0,0,0,0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slide-nav.prev {
+            left: 20px;
+        }
+
+        .slide-nav.next {
+            right: 20px;
+        }
+
+        /* Modal Styles for Parallax Overlay */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-bg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: var(--secondary-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .modal-title {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--hover-bg);
+        }
+
+        .modal-gallery {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .parallax-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            background-size: contain;
+            background-position: center;
+            background-attachment: fixed;
+            /*Desktop sizes*/
+            height: 100vh;
+            min-height: 500px;
+        }
+
+        .parallax-content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+            z-index: 1;
+        }
+
+        .parallax-content {
+            z-index: 2;
         }
 
         /* Event Cards */
@@ -479,6 +721,33 @@
             color: var(--text-white);
         }
 
+        /* Footer */
+        .footer {
+            background: var(--secondary-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-copyright {
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            color: var(--accent-yellow);
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .mobile-toggle {
@@ -487,9 +756,9 @@
 
             .sidebar {
                 transform: translateX(-100%);
-                height: 100vh; /* Ensure full height for scrolling */
-                overflow-y: auto; /* Ensure scrollable */
-                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .sidebar.mobile-visible {
@@ -520,8 +789,8 @@
                 font-size: 2rem;
             }
 
-            .page {
-                padding: 1rem;
+            .page-section {
+                padding: 2rem 1rem;
             }
 
             .gallery-grid {
@@ -544,77 +813,28 @@
             .social-link {
                 font-size: 1.8rem;
             }
+
+            .slide {
+                height: 300px;
+            }
+
+            .slide-title {
+                font-size: 1.5rem;
+            }
+
+            .slide-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .parallax-section {
+                background-attachment: scroll; /* Fallback for mobile */
+            }
         }
 
-        /* Slideshow Styles */
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            margin: auto;
-            background: var(--secondary-bg);
-            border-radius: 15px;
+        body.no-scroll {
             overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .slide {
-            display: none;
-            height: 400px;
-            background: linear-gradient(45deg, var(--secondary-bg), var(--hover-bg));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            font-size: 4rem;
-        }
-
-        .slide.active {
-            display: flex;
-        }
-
-        .slide-controls {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .slide-dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
-            background-color: var(--text-dark-gray);
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .slide-dot.active, .slide-dot:hover {
-            background-color: var(--accent-yellow);
-        }
-
-        .slide-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: var(--accent-yellow);
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .slide-nav:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        .slide-nav.prev {
-            left: 10px;
-        }
-
-        .slide-nav.next {
-            right: 10px;
         }
     </style>
 </head>
@@ -630,37 +850,37 @@
         </div>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#home" class="nav-link active" onclick="showPage('home', this)">Home</a>
+                <a href="#home" class="nav-link active">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#about" class="nav-link" onclick="showPage('about', this)">About Us</a>
+                <a href="#about" class="nav-link">About Us</a>
             </li>
             <li class="nav-item">
-                <a href="#gallery" class="nav-link" onclick="showPage('gallery', this)">Gallery</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
             </li>
             <li class="nav-item">
-                <a href="#past-events" class="nav-link" onclick="showPage('past-events', this)">Past Events</a>
+                <a href="#past-events" class="nav-link">Past Events</a>
             </li>
             <li class="nav-item">
-                <a href="#upcoming-events" class="nav-link" onclick="showPage('upcoming-events', this)">Upcoming Events</a>
+                <a href="#upcoming-events" class="nav-link">Upcoming Events</a>
             </li>
             <li class="nav-item">
-                <a href="#talents" class="nav-link" onclick="showPage('talents', this)">Talents</a>
+                <a href="#talents" class="nav-link">Talents</a>
             </li>
             <li class="nav-item">
-                <a href="#testimonials" class="nav-link" onclick="showPage('testimonials', this)">Testimonials</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
             </li>
             <li class="nav-item">
-                <a href="#contact" class="nav-link" onclick="showPage('contact', this)">Contact</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <section class="hero">
+        <!-- Home Section -->
+        <section id="home" class="page-section">
+            <div class="hero">
                 <video class="hero-video" autoplay muted loop playsinline>
                     <source src="background2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -670,44 +890,67 @@
                     <img src="kingempire.jpg" alt="KING EMPIRE" class="hero-logo">
                     <h1>KING EMPIRE</h1>
                     <p>Elevating nightlife experiences with world-class artists and unforgettable events</p>
-                    <button class="cta-button" onclick="showPage('contact', null)">Contact Us</button>
+                    <a href="#contact" class="cta-button">Contact Us</a>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
-        <!-- About Us Page -->
-        <div id="about" class="page">
+        <!-- About Us Section -->
+        <section id="about" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">About KING EMPIRE</h1>
                 <p class="page-subtitle">Your premier destination for exceptional nightclub events</p>
             </div>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
-                    KING EMPIRE is a leading event hosting organization specializing in creating extraordinary nightclub experiences. We bring together top-tier artists like Marioo and create unforgettable nights that resonate with music lovers and party enthusiasts.
+                    KING EMPIRE is a leading event hosting organization specializing in creating extraordinary nightclub experiences. We bring together top-tier artists like Marioo, jaivah, chino kidd, other artist from South Africa like shakesxles,uncool mc and create unforgettable nights that resonate with music lovers and party enthusiasts.
                 </p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
-                    Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations.
-                </p>
+                  Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
                 <div style="background: var(--secondary-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color);">
                     <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">Our Mission</h3>
                     <p style="color: var(--text-gray);">To revolutionize the nightlife scene by creating immersive, high-energy events that bring people together through the power of music and exceptional entertainment.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Gallery Page -->
-        <div id="gallery" class="page">
+        <!-- Gallery Section -->
+        <section id="gallery" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Gallery</h1>
                 <p class="page-subtitle">Capturing the energy and excitement of our events</p>
             </div>
             
-            <!-- Slideshow -->
+            <!-- Enhanced Slideshow -->
             <div class="slideshow-container">
-                <div class="slide active">📸</div>
-                <div class="slide">🎤</div>
-                <div class="slide">🎵</div>
-                <div class="slide">✨</div>
+                <div class="slide active">
+                    <img src="dj1.jpg" alt="DJ Performance">
+                    <div class="slide-overlay">
+                        <h3 class="slide-title">Premium DJ Sets</h3>
+                        <p class="slide-description">World-class DJs bringing the best beats to our events</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="dj2.jpg" alt="DJ Performance">
+                    <div class="slide-overlay">
+                        <h3 class="slide-title">Electronic Vibes</h3>
+                        <p class="slide-description">Creating the perfect atmosphere with cutting-edge sound systems</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="dj3.jpg" alt="DJ Performance">
+                    <div class="slide-overlay">
+                        <h3 class="slide-title">Night Energy</h3>
+                        <p class="slide-description">Keeping the dance floor alive all night long</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="dj4.jpg" alt="DJ Performance">
+                    <div class="slide-overlay">
+                        <h3 class="slide-title">Musical Excellence</h3>
+                        <p class="slide-description">Professional mixing and seamless transitions</p>
+                    </div>
+                </div>
                 <button class="slide-nav prev" onclick="changeSlide(-1)">&lt;</button>
                 <button class="slide-nav next" onclick="changeSlide(1)">&gt;</button>
             </div>
@@ -719,104 +962,114 @@
             </div>
 
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-img">🎉</div>
+                <div class="gallery-item" onclick="openGalleryModal('marioo')">
+                    <div class="gallery-img">
+                        <img src="marioo1.jpg" alt="Marioo Live Performance">
+                    </div>
+                    <div class="image-count">6 Photos</div>
                     <div class="gallery-info">
                         <h3>Marioo Live Performance</h3>
                         <p>An electrifying night with Tanzania's finest artist</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🌟</div>
+                <div class="gallery-item" onclick="openGalleryModal('vip')">
+                    <div class="gallery-img">
+                        <img src="vip1.jpg" alt="VIP Experience">
+                    </div>
+                    <div class="image-count">3 Photos</div>
                     <div class="gallery-info">
                         <h3>VIP Experience</h3>
                         <p>Exclusive access to premium sections and services</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">💫</div>
+                <div class="gallery-item" onclick="openGalleryModal('lighting')">
+                    <div class="gallery-img">
+                        <img src="light1.jpg" alt="Sound & Lighting">
+                    </div>
+                    <div class="image-count">3 Photos</div>
                     <div class="gallery-info">
                         <h3>Sound & Lighting</h3>
                         <p>State-of-the-art production and visual effects</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎭</div>
+                <div class="gallery-item" onclick="openGalleryModal('atmosphere')">
+                    <div class="gallery-img">
+                        <img src="event1.jpg" alt="Event Atmosphere">
+                    </div>
+                    <div class="image-count">3 Photos</div>
                     <div class="gallery-info">
                         <h3>Event Atmosphere</h3>
                         <p>Creating unforgettable memories and experiences</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎊</div>
+                <div class="gallery-item" onclick="openGalleryModal('crowd')">
+                    <div class="gallery-img">
+                        <img src="crowd1.jpg" alt="Crowd Energy">
+                    </div>
+                    <div class="image-count">4 Photos</div>
                     <div class="gallery-info">
                         <h3>Crowd Energy</h3>
                         <p>The electric atmosphere our events are known for</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎶</div>
+                <div class="gallery-item" onclick="openGalleryModal('moments')">
+                    <div class="gallery-img">
+                        <img src="moment1.jpg" alt="Musical Moments">
+                    </div>
+                    <div class="image-count">4 Photos</div>
                     <div class="gallery-info">
                         <h3>Musical Moments</h3>
                         <p>Capturing the perfect harmony between artist and audience</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Past Events Page -->
-        <div id="past-events" class="page">
+        <!-- Past Events Section -->
+        <section id="past-events" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Past Events</h1>
                 <p class="page-subtitle">A showcase of our successful events and memorable nights</p>
             </div>
             <div class="event-card">
-                <div class="event-date">Dec 31, 2024</div>
-                <h3 class="event-title">New Year's Eve Extravaganza with Marioo</h3>
+                <div class="event-date">Dec 31, 2023</div>
+                <h3 class="event-title">New Year's Eve (Asante 2023) with Marioo</h3>
                 <p class="event-description">
-                    An unforgettable New Year's celebration featuring Tanzania's beloved artist Marioo. The night was filled with hit songs, incredible energy, and a crowd of over 2,000 party-goers celebrating the transition into 2025.
+                    An unforgettable New Year's celebration featuring Tanzania's beloved artist Marioo. The night was filled with hit songs, incredible energy, and a crowd of over 2,000 party-goers celebrating the transition into 2024.
                 </p>
-                <p class="event-location">📍 Arusha Grand Ballroom</p>
+                <p class="event-location">📍 Warehouse Arena</p>
             </div>
             <div class="event-card">
-                <div class="event-date">Nov 15, 2024</div>
-                <h3 class="event-title">Weekend Warriors Night</h3>
+                <div class="event-date">Nov 23, 2024</div>
+                <h3 class="event-title">Z-Fest</h3>
                 <p class="event-description">
-                    A high-energy weekend event featuring local DJs and surprise guest appearances. The perfect blend of Bongo Flava, Afrobeats, and international hits kept the dance floor packed all night long.
+                    A high-energy weekend event featuring local DJs and surprise guest appearances  from South Africa SHAKESXLES and UNCOOL MC. The perfect blend of Bongo Flava with our own home town artist JAIVAH. Afrobeats, and international hits kept the dance floor packed all night long.
                 </p>
-                <p class="event-location">📍 Skyline Rooftop Lounge</p>
+                <p class="event-location">📍 Warehouse Arena</p>
             </div>
             <div class="event-card">
-                <div class="event-date">Oct 20, 2024</div>
-                <h3 class="event-title">VIP Exclusive Experience</h3>
+                <div class="event-date">2024 - PRESENT</div>
+                <h3 class="event-title">Balcony Sesh</h3>
                 <p class="event-description">
-                    An intimate evening for our VIP clientele featuring premium services, exclusive performances, and personalized entertainment. Limited to 500 guests for a more personal and luxurious experience.
+                    Balcony vibes that hit different always with a midweek ritual locked in, good dj line up and the energy is always high, an intimate evening for our VIP clientele featuring premium services, exclusive performances, and personalized entertainment.
                 </p>
-                <p class="event-location">📍 Empire Private Club</p>
+                <p class="event-location">📍 Warehouse Bar</p>
             </div>
-        </div>
+              <div class="event-card">
+                <div class="event-date">2025</div>
+                <h3 class="event-title">Unruly Friday</h3>
+                <p class="event-description">
+                   No rules just vibes, always wilding out, no limits. its always on friday, breaking the routine and turn up the chaos. it' not just a party it's a vibe you feel in your heart. High-energy sets, premium crowd and the most turnt up good Djs lineup. Always a nightlife experience like no other.
+                </p>
+                <p class="event-location">📍 Warehouse Bar</p>
+            </div>
+        </section>
 
-        <!-- Upcoming Events Page -->
-        <div id="upcoming-events" class="page">
+        <!-- Upcoming Events Section -->
+        <section id="upcoming-events" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Upcoming Events</h1>
                 <p class="page-subtitle">Don't miss out on these exciting upcoming experiences</p>
-            </div>
-            <div class="event-card">
-                <div class="event-date">Aug 25, 2025</div>
-                <h3 class="event-title">Summer Vibes Festival</h3>
-                <p class="event-description">
-                    Get ready for the hottest summer event of the year! Featuring multiple artists, food vendors, and non-stop entertainment from sunset to sunrise. Early bird tickets available now.
-                </p>
-                <p class="event-location">📍 Arusha Convention Center</p>
-            </div>
-            <div class="event-card">
-                <div class="event-date">Sep 10, 2025</div>
-                <h3 class="event-title">Midnight Legends</h3>
-                <p class="event-description">
-                    An exclusive event featuring legendary artists and emerging talent. Experience the perfect fusion of classic hits and fresh sounds in an atmosphere designed for music connoisseurs.
-                </p>
-                <p class="event-location">📍 Venue TBA</p>
             </div>
             <div class="event-card">
                 <div class="event-date">Oct 31, 2025</div>
@@ -824,50 +1077,81 @@
                 <p class="event-description">
                     Dress to impress and prepare for a night of thrills, chills, and incredible music. Costume contests, special performances, and prizes await. This will be our biggest Halloween event yet!
                 </p>
-                <p class="event-location">📍 TBA - Watch this space</p>
+                <p class="event-location">📍 Warehouse Bar</p>
             </div>
-        </div>
+            <div class="event-card">
+                <div class="event-date">Sep 10, 2025</div>
+                <h3 class="event-title">Midnight Legends</h3>
+                <p class="event-description">
+                    An exclusive event featuring legendary artists and emerging talent. Experience the perfect fusion of classic hits and fresh sounds in an atmosphere designed for music connoisseurs.
+                </p>
+                <p class="event-location">📍 Warehouse bar</p>
+            </div>
+           
+        </section>
 
-        <!-- Talents Page -->
-        <div id="talents" class="page">
+        <!-- Talents Section -->
+        <section id="talents" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Our Talents</h1>
                 <p class="page-subtitle">Meet the artists who make our events extraordinary</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-img">🎤</div>
+                <div class="gallery-item" onclick="openGalleryModal('talents_marioo')">
+                    <div class="gallery-img">
+                        <img src="haloo1.jpg" alt="Marioo">
+                    </div>
+                    <div class="image-count">2 Photos</div>
                     <div class="gallery-info">
                         <h3>Marioo</h3>
                         <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎧</div>
+                <div class="gallery-item" onclick="openGalleryModal('talents_djs')">
+                    <div class="gallery-img">
+                        <img src="dj7.jpg" alt="DJs">
+                    </div>
+                    <div class="image-count">3 Photos</div>
                     <div class="gallery-info">
-                        <h3>DJ Empire</h3>
-                        <p>Our resident DJ master, mixing the hottest tracks and keeping the energy high all night</p>
+                        <h3>DJs</h3>
+                        <p>Our resident DJs master, mixing the hottest tracks and keeping the energy high all night</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎵</div>
+                 <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
+                    <div class="gallery-img">
+                        <img src="jaivah1.jpg" alt="Jaivah">
+                    </div>
+                    <div class="image-count">3 Photos</div>
                     <div class="gallery-info">
-                        <h3>Rising Stars</h3>
-                        <p>Emerging talent from across East Africa, showcasing the future of music</p>
+                        <h3>Jaivah</h3>
+                        <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">🎼</div>
+                <div class="gallery-item" onclick="openGalleryModal('talents_mafik')">
+                    <div class="gallery-img">
+                        <img src="mafik1.jpg" alt="The Mafik">
+                    </div>
+                    <div class="image-count">3 Photos</div>
+                    <div class="gallery-info">
+                        <h3>The Mafik</h3>
+                        <p>Emerging best group talents in Tanzania.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openGalleryModal('talents_international')">
+                    <div class="gallery-img">
+                        <img src="act1.jpg" alt="International Acts">
+                    </div>
+                    <div class="image-count">1 Photo</div>
                     <div class="gallery-info">
                         <h3>International Acts</h3>
                         <p>Special guest performances from renowned artists across Africa and beyond</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Testimonials Page -->
-        <div id="testimonials" class="page">
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Testimonials</h1>
                 <p class="page-subtitle">What our clients and guests say about us</p>
@@ -876,34 +1160,34 @@
                 <p class="testimonial-quote">
                     "KING EMPIRE delivered an absolutely incredible experience! The Marioo performance was beyond our expectations, and the organization was flawless. Our guests are still talking about it weeks later."
                 </p>
-                <p class="testimonial-author">Sarah Johnson</p>
-                <p class="testimonial-role">Corporate Event Manager</p>
+                <p class="testimonial-author">Eric Chinn</p>
+                <p class="testimonial-role">CEO</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-quote">
                     "The attention to detail and professionalism shown by the KING EMPIRE team was outstanding. They transformed our venue into something magical and created an unforgettable night for everyone."
                 </p>
-                <p class="testimonial-author">Michael Mwangi</p>
+                <p class="testimonial-author">Jesse Santan</p>
                 <p class="testimonial-role">Venue Owner</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-quote">
                     "Working with KING EMPIRE was a game-changer for our nightclub. The events they organize bring in amazing crowds and create the perfect atmosphere. Highly recommended!"
                 </p>
-                <p class="testimonial-author">Grace Kimani</p>
+                <p class="testimonial-author">Victor</p>
                 <p class="testimonial-role">Club Manager</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-quote">
                     "I've attended multiple KING EMPIRE events and each one has been better than the last. The energy, the music, the production quality - everything is top-notch. Can't wait for the next one!"
                 </p>
-                <p class="testimonial-author">David Mushi</p>
+                <p class="testimonial-author">Raymon Shaffiq</p>
                 <p class="testimonial-role">Regular Attendee</p>
             </div>
-        </div>
+        </section>
 
-        <!-- Contact Page -->
-        <div id="contact" class="page">
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
             <div class="page-header">
                 <h1 class="page-title">Contact Us</h1>
                 <p class="page-subtitle">Get in touch for more information about our events</p>
@@ -930,72 +1214,133 @@
                     <a href="https://t.snapchat.com/YB6tC0JI" target="_blank" class="social-link"><i class="fab fa-snapchat"></i></a>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-copyright">© 2025 KING EMPIRE. All rights reserved.</p>
+                <p class="footer-tagline">Strategic Creativity. Elite Experiences. Modern Culture.</p>
+            </div>
+        </footer>
     </main>
 
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title">Gallery</h2>
+                <button class="modal-close" onclick="closeGalleryModal()">&times;</button>
+            </div>
+            <div class="modal-gallery" id="modalGallery">
+                <!-- Parallax sections will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Page Navigation
-        function showPage(pageId, linkElement) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            if (linkElement) {
-                linkElement.classList.add('active');
+        // Gallery data with image collections
+        const galleryData = {
+            marioo: {
+                title: 'Marioo Live Performance',
+                images: [
+                    { src: 'marioo1.jpg', caption: 'Marioo on stage electrifying the crowd' },
+                    { src: 'marioo2.jpg', caption: 'High energy performance moments' },
+                    { src: 'marioo3.jpg', caption: 'Crowd singing along to hit songs' },
+                    { src: 'marioo4.jpg', caption: 'Perfect stage lighting and atmosphere' },
+                    { src: 'marioo5.jpg', caption: 'Unforgettable musical experience' },
+                    { src: 'marioo6.jpg', caption: 'The artist connecting with fans' }
+                ]
+            },
+            vip: {
+                title: 'VIP Experience',
+                images: [
+                    { src: 'vip1.jpg', caption: 'Exclusive VIP lounge area' },
+                    { src: 'vip2.jpg', caption: 'Premium seating and service' },
+                    { src: 'vip3.jpg', caption: 'Luxury amenities for VIP guests' }
+                ]
+            },
+            lighting: {
+                title: 'Sound & Lighting',
+                images: [
+                    { src: 'light1.jpg', caption: 'Professional lighting setup' },
+                    { src: 'light2.jpg', caption: 'Dynamic light shows' },
+                    { src: 'light3.jpg', caption: 'State-of-the-art light system' }
+                ]
+            },
+            atmosphere: {
+                title: 'Event Atmosphere',
+                images: [
+                    { src: 'event1.jpg', caption: 'Perfect event ambiance' },
+                    { src: 'event2.jpg', caption: 'Guests enjoying the night' },
+                    { src: 'event3.jpg', caption: 'Memorable moments created' }
+                ]
+            },
+            crowd: {
+                title: 'Crowd Energy',
+                images: [
+                    { src: 'crowd1.jpg', caption: 'Electric crowd energy' },
+                    { src: 'crowd2.jpg', caption: 'Dancing and celebration' },
+                    { src: 'crowd3.jpg', caption: 'Packed dance floor' },
+                    { src: 'crowd4.jpg', caption: 'Unforgettable night atmosphere' }
+                ]
+            },
+            moments: {
+                title: 'Musical Moments',
+                images: [
+                    { src: 'moment1.jpg', caption: 'Perfect musical harmony' },
+                    { src: 'moment2.jpg', caption: 'Artist and audience connection' },
+                    { src: 'moment3.jpg', caption: 'Magical performance moments' },
+                    { src: 'moment4.jpg', caption: 'Creating lasting memories' }
+                ]
+            },
+            slideshow: {
+                title: 'DJ Performances',
+                images: [
+                    { src: 'dj1.jpg', caption: 'Premium DJ Sets' },
+                    { src: 'dj2.jpg', caption: 'Electronic Vibes' },
+                    { src: 'dj3.jpg', caption: 'Night Energy' },
+                    { src: 'dj4.jpg', caption: 'Musical Excellence' }
+                ]
+            },
+            talents_marioo: {
+                title: 'Marioo',
+                images: [
+                    { src: 'haloo1.jpg', caption: 'Marioo' },
+                    { src: 'haloo2.jpg', caption: 'Marioo' }
+                ]
+            },
+            talents_jaivah: {
+                title: 'Jaivah',
+                images: [
+                    { src: 'jaivah1.jpg', caption: 'Jaivah' },
+                    { src: 'jaivah2.jpg', caption: 'Jaivah' },
+                    { src: 'jaivah3.jpg', caption: 'Jaivah' }
+                ]
+            },
+            talents_djs: {
+                title: 'DJs',
+                images: [
+                    { src: 'dj3.jpg', caption: 'DJ' },
+                    { src: 'dj6.jpg', caption: 'DJ' },
+                    { src: 'dj7.jpg', caption: 'DJ' }
+                ]
+            },
+            talents_mafik: {
+                title: 'The Mafik',
+                images: [
+                    { src: 'mafik1.jpg', caption: 'The Mafif' },
+                    { src: 'mafik2.jpg', caption: 'The Mafik' },
+                    { src: 'mafik3.jpg', caption: 'The Mafik' }
+                ]
+            },
+            talents_international: {
+                title: 'International Acts',
+                images: [
+                    { src: 'act1.jpg', caption: 'International act' }
+                ]
             }
-            
-            // Close mobile menu if open
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('mobile-visible');
-            }
-        }
-
-        // Mobile Menu Toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('mobile-visible');
-        }
-
-        // Prevent page scroll when scrolling sidebar
-        document.getElementById('sidebar').addEventListener('wheel', function(e) {
-            e.preventDefault();
-            this.scrollTop += e.deltaY;
-        });
-
-        // Enhanced touch scrolling for sidebar
-        let touchStartY = 0;
-        let touchStartScroll = 0;
-        const sidebar = document.getElementById('sidebar');
-
-        sidebar.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            touchStartScroll = this.scrollTop;
-        });
-
-        sidebar.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-            const touchY = e.touches[0].clientY;
-            const deltaY = touchStartY - touchY;
-            this.scrollTop = touchStartScroll + deltaY;
-        }, { passive: false });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-toggle');
-            
-            if (window.innerWidth <= 768 && 
-                !sidebar.contains(event.target) && 
-                !toggle.contains(event.target)) {
-                sidebar.classList.remove('mobile-visible');
-            }
-        });
+        };
 
         // Slideshow functionality
         let slideIndex = 1;
@@ -1035,25 +1380,123 @@
         // Start auto slideshow
         setInterval(autoSlide, 4000);
 
-        // Gallery item click handler
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const title = this.querySelector('h3').textContent;
-                const description = this.querySelector('p').textContent;
-                alert(`${title}\n\n${description}\n\nNote: In a real implementation, this would open a full-size image gallery or detailed view.`);
-            });
-        });
+        // Gallery Modal Functions
+        function openGalleryModal(galleryType) {
+            const modal = document.getElementById('galleryModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalGallery = document.getElementById('modalGallery');
+            
+            if (galleryData[galleryType]) {
+                modalTitle.textContent = galleryData[galleryType].title;
+                
+                // Clear existing content
+                modalGallery.innerHTML = '';
+                
+                // Add parallax sections for each image
+                galleryData[galleryType].images.forEach(image => {
+                    const section = document.createElement('div');
+                    section.className = 'parallax-section';
+                    section.style.backgroundImage = `url(${image.src})`;
+                    section.innerHTML = `
+                        <div class="parallax-content">
+                            <p>${image.caption}</p>
+                        </div>
+                    `;
+                    modalGallery.appendChild(section);
+                });
+                
+                modal.style.display = 'block';
+                setTimeout(() => modal.classList.add('show'), 10);
+                document.body.classList.add('no-scroll');
+            }
+        }
 
-        // Smooth scrolling for navigation
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }, 300);
+        }
+
+        // Mobile Menu Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('mobile-visible');
+        }
+
+        // Navigation highlighting on scroll
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach((section, index) => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    navLinks[index].classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
-                showPage(targetId, this);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('mobile-visible');
+                }
             });
         });
 
-        // Add some interactive elements
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('mobile-visible');
+            }
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const galleryModal = document.getElementById('galleryModal');
+            
+            if (event.target === galleryModal) {
+                closeGalleryModal();
+            }
+        }
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const galleryModal = document.getElementById('galleryModal');
+                
+                if (galleryModal.classList.contains('show')) {
+                    closeGalleryModal();
+                }
+            }
+        });
+
+        // Add hover effects to cards
         document.querySelectorAll('.event-card, .testimonial-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-5px) scale(1.02)';
@@ -1064,9 +1507,20 @@
             });
         });
 
+        // Scroll event listener for navigation highlighting
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('mobile-visible');
+            }
+        });
+
         // Initialize page
         window.addEventListener('load', function() {
             showSlide(slideIndex);
+            updateActiveNav();
             
             // Add loading animation
             document.body.style.opacity = '0';
@@ -1076,39 +1530,55 @@
             }, 100);
         });
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                document.getElementById('sidebar').classList.remove('mobile-visible');
-            }
+        // Prevent sidebar scroll from affecting main page
+        document.getElementById('sidebar').addEventListener('wheel', function(e) {
+            e.preventDefault();
+            this.scrollTop += e.deltaY;
         });
 
-        // Add some dynamic content loading simulation
-        function loadContent() {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            galleryItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    item.style.transition = 'all 0.5s ease';
-                    
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 50);
-                }, index * 100);
-            });
-        }
+        // Enhanced touch scrolling for sidebar
+        let touchStartY = 0;
+        let touchStartScroll = 0;
+        const sidebar = document.getElementById('sidebar');
 
-        // Enhanced showPage function that includes content loading
-        const originalShowPage = showPage;
-        window.showPage = function(pageId, linkElement) {
-            originalShowPage(pageId, linkElement);
-            if (pageId === 'gallery') {
-                setTimeout(loadContent, 300);
-            }
-        };
+        sidebar.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartScroll = this.scrollTop;
+        });
+
+        sidebar.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            const touchY = e.touches[0].clientY;
+            const deltaY = touchStartY - touchY;
+            this.scrollTop = touchStartScroll + deltaY;
+        }, { passive: false });
+
+        // Image loading error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    // Create a fallback colored rectangle with icon
+                    const fallback = document.createElement('div');
+                    fallback.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(45deg, var(--secondary-bg), var(--hover-bg));
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--text-gray);
+                        font-size: 2rem;
+                    `;
+                    fallback.innerHTML = '📸';
+                    
+                    if (this.parentNode) {
+                        this.parentNode.replaceChild(fallback, this);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
-
+```
