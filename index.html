@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KING EMPIRE - Premium Event Hosting</title>
+    <title>👑 KING EMPIRE - Premium Event Hosting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
@@ -561,19 +561,19 @@
             justify-content: center;
             color: white;
             text-align: center;
-            background-size: contain;
+            background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /*Desktop sizes*/
-            height: 100vh;
             min-height: 500px;
         }
 
         .parallax-content {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             padding: 2rem;
             border-radius: 8px;
             max-width: 80%;
+            z-index: 2;
+            position: relative;
         }
 
         .parallax-section::before {
@@ -583,12 +583,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
             z-index: 1;
-        }
-
-        .parallax-content {
-            z-index: 2;
         }
 
         /* Event Cards */
@@ -747,6 +743,11 @@
             font-weight: 500;
         }
 
+        /* Mobile Gallery Styles */
+        .mobile-gallery-container {
+            display: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .mobile-toggle {
@@ -827,8 +828,98 @@
                 font-size: 1.2rem;
             }
 
+            /* Mobile-specific parallax fixes */
             .parallax-section {
-                background-attachment: scroll; /* Fallback for mobile */
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .parallax-content {
+                background: rgba(0, 0, 0, 0.8);
+                padding: 1.5rem;
+                border-radius: 8px;
+                max-width: 90%;
+                font-size: 0.9rem;
+            }
+
+            /* Mobile Gallery - Show single image view */
+            .mobile-gallery-container {
+                display: block;
+            }
+
+            .desktop-gallery {
+                display: none;
+            }
+
+            .mobile-image-viewer {
+                position: relative;
+                width: 100%;
+                height: 80vh;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .mobile-image-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0,0,0,0.8));
+                color: white;
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .mobile-nav-button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0,0,0,0.7);
+                color: var(--accent-yellow);
+                border: none;
+                padding: 0.8rem;
+                cursor: pointer;
+                font-size: 1.2rem;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+            }
+
+            .mobile-nav-button:hover {
+                background: rgba(0,0,0,0.9);
+            }
+
+            .mobile-nav-button.prev {
+                left: 10px;
+            }
+
+            .mobile-nav-button.next {
+                right: 10px;
+            }
+
+            .mobile-image-counter {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(0,0,0,0.8);
+                color: var(--accent-yellow);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: bold;
             }
         }
 
@@ -1231,8 +1322,20 @@
                 <h2 id="modalTitle" class="modal-title">Gallery</h2>
                 <button class="modal-close" onclick="closeGalleryModal()">&times;</button>
             </div>
-            <div class="modal-gallery" id="modalGallery">
+            <!-- Desktop Gallery -->
+            <div class="modal-gallery desktop-gallery" id="modalGallery">
                 <!-- Parallax sections will be dynamically added here -->
+            </div>
+            <!-- Mobile Gallery -->
+            <div class="mobile-gallery-container" id="mobileGallery">
+                <div class="mobile-image-viewer" id="mobileImageViewer">
+                    <div class="mobile-image-counter" id="mobileImageCounter">1 / 1</div>
+                    <button class="mobile-nav-button prev" onclick="prevMobileImage()">&lt;</button>
+                    <button class="mobile-nav-button next" onclick="nextMobileImage()">&gt;</button>
+                    <div class="mobile-image-overlay" id="mobileImageOverlay">
+                        <p id="mobileImageCaption">Caption</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1328,7 +1431,7 @@
             talents_mafik: {
                 title: 'The Mafik',
                 images: [
-                    { src: 'mafik1.jpg', caption: 'The Mafif' },
+                    { src: 'mafik1.jpg', caption: 'The Mafik' },
                     { src: 'mafik2.jpg', caption: 'The Mafik' },
                     { src: 'mafik3.jpg', caption: 'The Mafik' }
                 ]
@@ -1340,6 +1443,10 @@
                 ]
             }
         };
+
+        // Mobile gallery state
+        let currentMobileImageIndex = 0;
+        let currentMobileGallery = null;
 
         // Slideshow functionality
         let slideIndex = 1;
@@ -1379,30 +1486,66 @@
         // Start auto slideshow
         setInterval(autoSlide, 4000);
 
+        // Mobile Gallery Functions
+        function updateMobileImage() {
+            if (!currentMobileGallery || currentMobileImageIndex >= currentMobileGallery.length) return;
+            
+            const viewer = document.getElementById('mobileImageViewer');
+            const caption = document.getElementById('mobileImageCaption');
+            const counter = document.getElementById('mobileImageCounter');
+            
+            const image = currentMobileGallery[currentMobileImageIndex];
+            viewer.style.backgroundImage = `url(${image.src})`;
+            caption.textContent = image.caption;
+            counter.textContent = `${currentMobileImageIndex + 1} / ${currentMobileGallery.length}`;
+        }
+
+        function nextMobileImage() {
+            if (!currentMobileGallery) return;
+            currentMobileImageIndex = (currentMobileImageIndex + 1) % currentMobileGallery.length;
+            updateMobileImage();
+        }
+
+        function prevMobileImage() {
+            if (!currentMobileGallery) return;
+            currentMobileImageIndex = currentMobileImageIndex > 0 ? currentMobileImageIndex - 1 : currentMobileGallery.length - 1;
+            updateMobileImage();
+        }
+
         // Gallery Modal Functions
         function openGalleryModal(galleryType) {
             const modal = document.getElementById('galleryModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalGallery = document.getElementById('modalGallery');
+            const mobileGallery = document.getElementById('mobileGallery');
             
             if (galleryData[galleryType]) {
                 modalTitle.textContent = galleryData[galleryType].title;
+                currentMobileGallery = galleryData[galleryType].images;
+                currentMobileImageIndex = 0;
                 
-                // Clear existing content
-                modalGallery.innerHTML = '';
+                // Check if mobile
+                const isMobile = window.innerWidth <= 768;
                 
-                // Add parallax sections for each image
-                galleryData[galleryType].images.forEach(image => {
-                    const section = document.createElement('div');
-                    section.className = 'parallax-section';
-                    section.style.backgroundImage = `url(${image.src})`;
-                    section.innerHTML = `
-                        <div class="parallax-content">
-                            <p>${image.caption}</p>
-                        </div>
-                    `;
-                    modalGallery.appendChild(section);
-                });
+                if (isMobile) {
+                    // Mobile view - single image viewer
+                    updateMobileImage();
+                } else {
+                    // Desktop view - parallax sections
+                    modalGallery.innerHTML = '';
+                    
+                    galleryData[galleryType].images.forEach(image => {
+                        const section = document.createElement('div');
+                        section.className = 'parallax-section';
+                        section.style.backgroundImage = `url(${image.src})`;
+                        section.innerHTML = `
+                            <div class="parallax-content">
+                                <p>${image.caption}</p>
+                            </div>
+                        `;
+                        modalGallery.appendChild(section);
+                    });
+                }
                 
                 modal.style.display = 'block';
                 setTimeout(() => modal.classList.add('show'), 10);
@@ -1416,6 +1559,8 @@
             setTimeout(() => {
                 modal.style.display = 'none';
                 document.body.classList.remove('no-scroll');
+                currentMobileGallery = null;
+                currentMobileImageIndex = 0;
             }, 300);
         }
 
@@ -1493,6 +1638,15 @@
                     closeGalleryModal();
                 }
             }
+            
+            // Mobile gallery keyboard navigation
+            if (currentMobileGallery && window.innerWidth <= 768) {
+                if (event.key === 'ArrowLeft') {
+                    prevMobileImage();
+                } else if (event.key === 'ArrowRight') {
+                    nextMobileImage();
+                }
+            }
         });
 
         // Add hover effects to cards
@@ -1506,6 +1660,39 @@
             });
         });
 
+        // Touch events for mobile gallery
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleMobileSwipe() {
+            if (!currentMobileGallery) return;
+            
+            const swipeThreshold = 50;
+            const diff = touchEndX - touchStartX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    prevMobileImage();
+                } else {
+                    nextMobileImage();
+                }
+            }
+        }
+
+        // Add touch event listeners for mobile gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileViewer = document.getElementById('mobileImageViewer');
+            
+            mobileViewer.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+            });
+            
+            mobileViewer.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].clientX;
+                handleMobileSwipe();
+            });
+        });
+
         // Scroll event listener for navigation highlighting
         window.addEventListener('scroll', updateActiveNav);
 
@@ -1513,6 +1700,19 @@
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 document.getElementById('sidebar').classList.remove('mobile-visible');
+            }
+            
+            // Refresh modal view if open and switching between desktop/mobile
+            const modal = document.getElementById('galleryModal');
+            if (modal.classList.contains('show') && currentMobileGallery) {
+                // Re-open modal with appropriate view for current screen size
+                const currentGalleryType = Object.keys(galleryData).find(key => 
+                    galleryData[key].images === currentMobileGallery
+                );
+                if (currentGalleryType) {
+                    closeGalleryModal();
+                    setTimeout(() => openGalleryModal(currentGalleryType), 100);
+                }
             }
         });
 
@@ -1577,6 +1777,37 @@
                 });
             });
         });
+
+        // Optimize mobile performance
+        if (window.innerWidth <= 768) {
+            // Disable parallax on mobile for better performance
+            document.querySelectorAll('.parallax-section').forEach(section => {
+                section.style.backgroundAttachment = 'scroll';
+            });
+        }
+
+        // Add smooth transitions for mobile gallery
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 768px) {
+                .mobile-image-viewer {
+                    transition: background-image 0.3s ease;
+                }
+                
+                .mobile-image-overlay {
+                    transition: opacity 0.3s ease;
+                }
+                
+                .mobile-nav-button {
+                    transition: all 0.2s ease;
+                }
+                
+                .mobile-nav-button:active {
+                    transform: translateY(-50%) scale(0.95);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
