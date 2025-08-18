@@ -564,7 +564,7 @@
             background-size: contain;
             background-position: center;
             background-attachment: fixed;
-            /Desktop sizes/
+            /*Desktop sizes*/
             height: 100vh;
             min-height: 500px;
         }
@@ -1395,7 +1395,7 @@
                 galleryData[galleryType].images.forEach(image => {
                     const section = document.createElement('div');
                     section.className = 'parallax-section';
-                    section.style.backgroundImage = url(${image.src});
+                    section.style.backgroundImage = `url(${image.src})`;
                     section.innerHTML = `
                         <div class="parallax-content">
                             <p>${image.caption}</p>
