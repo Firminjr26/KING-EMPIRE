@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,100 +36,6 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-        }
-
-        /* Mobile Parallax Container */
-        @media (max-width: 768px) {
-            .mobile-parallax-container {
-                position: relative;
-                height: 100vh;
-                overflow: hidden;
-            }
-
-            .mobile-parallax-section {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 120vh;
-                background-size: cover;
-                background-position: center;
-                background-attachment: scroll;
-                will-change: transform;
-                transform: translateZ(0);
-                transition: transform 0.1s linear;
-            }
-
-            .mobile-parallax-content {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-                color: white;
-                padding: 3rem 2rem;
-                text-align: center;
-                z-index: 10;
-                transform: translateZ(0);
-            }
-
-            .mobile-parallax-title {
-                font-size: 2rem;
-                color: var(--accent-yellow);
-                margin-bottom: 1rem;
-                font-weight: bold;
-            }
-
-            .mobile-parallax-description {
-                font-size: 1.1rem;
-                color: var(--text-gray);
-                line-height: 1.6;
-            }
-
-            /* Enhanced modal gallery for mobile parallax */
-            .modal-gallery.mobile-parallax {
-                height: 100vh;
-                overflow-y: auto;
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: y mandatory;
-                position: relative;
-            }
-
-            .modal-gallery.mobile-parallax .parallax-section {
-                height: 100vh;
-                position: sticky;
-                top: 0;
-                background-size: cover;
-                background-position: center;
-                background-attachment: scroll;
-                display: flex;
-                align-items: flex-end;
-                justify-content: center;
-                scroll-snap-align: start;
-                will-change: transform;
-                transform: translateZ(0);
-            }
-
-            .modal-gallery.mobile-parallax .parallax-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(transparent 40%, rgba(0,0,0,0.8));
-                z-index: 1;
-            }
-
-            .modal-gallery.mobile-parallax .parallax-content {
-                position: relative;
-                z-index: 2;
-                background: transparent;
-                padding: 2rem;
-                max-width: 100%;
-                margin-bottom: 2rem;
-            }
         }
 
         /* Sidebar Navigation */
@@ -660,14 +565,14 @@
             background-size: contain;
             background-position: center;
             background-attachment: fixed;
-            /*Desktop sizes*/
             height: 100vh;
             min-height: 500px;
         }
 
         .parallax-content {
-            padding: 1rem;
-            border-radius: 2px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 8px;
             max-width: 80%;
             z-index: 2;
             position: relative;
@@ -920,7 +825,56 @@
                 font-size: 1.2rem;
             }
 
-            /* Mobile modal header adjustments */
+            .modal-gallery {
+                overflow-y: auto;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: y mandatory;
+                scroll-behavior: smooth;
+            }
+
+            .modal-gallery::-webkit-scrollbar {
+                display: none;
+            }
+
+            .modal {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .parallax-section {
+                height: 80vh;
+                min-height: 400px;
+                background-size: cover;
+                background-position: center;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                margin-bottom: -20vh;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                scroll-snap-align: start;
+            }
+
+            .parallax-section::before {
+                z-index: 2;
+            }
+
+            .parallax-content {
+                padding: 1.5rem;
+                max-width: 90%;
+                background: rgba(0, 0, 0, 0.7);
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+
+            .parallax-content p {
+                font-size: 1rem;
+                margin: 0;
+            }
+
             .modal-header {
                 padding: 1rem;
             }
@@ -933,6 +887,41 @@
                 width: 35px;
                 height: 35px;
                 font-size: 1.5rem;
+            }
+        }
+
+        /* iOS Safari parallax support */
+        @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+            .parallax-section {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+                position: sticky;
+                top: 0;
+                transform: translateZ(0);
+                will-change: transform, opacity;
+            }
+
+            .parallax-section::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: inherit;
+                background-size: cover;
+                background-position: center;
+                background-attachment: scroll;
+                transform: translateZ(0);
+                will-change: transform;
+                z-index: 0;
+            }
+
+            .parallax-content {
+                position: absolute;
+                bottom: 0;
+                z-index: 3;
             }
         }
 
@@ -964,7 +953,7 @@
             <img src="kingempire.jpg" alt="KING EMPIRE">
             <p>Premium Event Hosting</p>
         </div>
-        <ul class="nav-menu">
+        <ul class="nav Hawkins">
             <li class="nav-item">
                 <a href="#home" class="nav-link active">Home</a>
             </li>
@@ -1006,7 +995,7 @@
                     <img src="kingempire.jpg" alt="KING EMPIRE" class="hero-logo">
                     <h1>KING EMPIRE</h1>
                     <p>Elevating nightlife experiences with world-class artists and unforgettable events</p>
-                    <a href="#contact" class="cta-button">Contact Us</a>
+                    <a href="#contact" class="cta衡量button">Contact Us</a>
                 </div>
             </div>
         </section>
@@ -1020,6 +1009,11 @@
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <p>
                     KING EMPIRE is a leading event hosting organization specializing in creating extraordinary nightclub experiences. We bring together top-tier artists like 
+                    <span class="artist-name">Marioo</span>, 
+                    <span class="artist-name">Jaivah</span>, 
+                    <span class="artist-name">Young Lunya</span>, 
+                    <span class="artist-name">Chino Kidd</span>, 
+                    other artist from 
                     <span class="artist-name">South Africa</span> 
                     like 
                     <span class="artist-name">ShakesxLes</span>, 
@@ -1167,7 +1161,7 @@
                 <div class="event-date">Nov 23, 2024</div>
                 <h3 class="event-title">Z-Fest</h3>
                 <p class="event-description">
-                    A high-energy weekend event featuring local DJs and surprise guest appearances  from South Africa SHAKESXLES and UNCOOL MC. The perfect blend of Bongo Flava with our own home town artist JAIVAH. Afrobeats, and international hits kept the dance floor packed all night long.
+                    A high-energy weekend event featuring local DJs and surprise guest appearances from South Africa SHAKESXLES and UNCOOL MC. The perfect blend of Bongo Flava with our own home town artist JAIVAH. Afrobeats, and international hits kept the dance floor packed all night long.
                 </p>
                 <p class="event-location">📍 Warehouse Arena</p>
             </div>
@@ -1179,7 +1173,7 @@
                 </p>
                 <p class="event-location">📍 Warehouse Bar</p>
             </div>
-              <div class="event-card">
+            <div class="event-card">
                 <div class="event-date">2025</div>
                 <h3 class="event-title">Unruly Friday</h3>
                 <p class="event-description">
@@ -1211,7 +1205,6 @@
                 </p>
                 <p class="event-location">📍 Warehouse bar</p>
             </div>
-           
         </section>
 
         <!-- Talents Section -->
@@ -1241,7 +1234,7 @@
                         <p>Our resident DJs master, mixing the hottest tracks and keeping the energy high all night</p>
                     </div>
                 </div>
-                 <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
+                <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
                     <div class="gallery-img">
                         <img src="jaivah1.jpg" alt="Jaivah">
                     </div>
@@ -1466,11 +1459,6 @@
             }
         };
 
-        // Mobile parallax variables
-        let parallaxSections = [];
-        let isModalOpen = false;
-        let isMobile = window.innerWidth <= 768;
-
         // Slideshow functionality
         let slideIndex = 1;
 
@@ -1509,53 +1497,6 @@
         // Start auto slideshow
         setInterval(autoSlide, 4000);
 
-        // Mobile Parallax Functions
-        function initMobileParallax() {
-            if (isMobile && isModalOpen) {
-                const modalGallery = document.getElementById('modalGallery');
-                parallaxSections = modalGallery.querySelectorAll('.parallax-section');
-                
-                // Add mobile parallax class
-                modalGallery.classList.add('mobile-parallax');
-                
-                // Set up scroll listener for parallax effect
-                modalGallery.addEventListener('scroll', handleMobileParallax, { passive: true });
-            }
-        }
-
-        function handleMobileParallax() {
-            if (!isMobile || !parallaxSections.length) return;
-            
-            const modalGallery = document.getElementById('modalGallery');
-            const scrollTop = modalGallery.scrollTop;
-            const containerHeight = modalGallery.clientHeight;
-            
-            parallaxSections.forEach((section, index) => {
-                const sectionTop = index * containerHeight;
-                const sectionBottom = sectionTop + containerHeight;
-                const relativeScroll = scrollTop - sectionTop;
-                const scrollProgress = relativeScroll / containerHeight;
-                
-                // Apply parallax transform based on scroll position
-                if (scrollTop >= sectionTop - containerHeight && scrollTop <= sectionBottom + containerHeight) {
-                    // Calculate parallax offset
-                    const parallaxOffset = Math.max(-100, Math.min(100, scrollProgress * 50));
-                    
-                    // Apply transform with hardware acceleration
-                    section.style.transform = `translateY(${parallaxOffset}px) translateZ(0)`;
-                    section.style.willChange = 'transform';
-                    
-                    // Adjust opacity for smooth transitions
-                    const opacity = Math.max(0.3, Math.min(1, 1 - Math.abs(scrollProgress) * 0.5));
-                    section.style.opacity = opacity;
-                } else {
-                    // Reset transform for sections out of view
-                    section.style.transform = 'translateY(0) translateZ(0)';
-                    section.style.opacity = 1;
-                }
-            });
-        }
-
         // Gallery Modal Functions
         function openGalleryModal(galleryType) {
             const modal = document.getElementById('galleryModal');
@@ -1565,15 +1506,15 @@
             if (galleryData[galleryType]) {
                 modalTitle.textContent = galleryData[galleryType].title;
                 
-                // Clear existing content and classes
+                // Clear existing content
                 modalGallery.innerHTML = '';
-                modalGallery.classList.remove('mobile-parallax');
                 
                 // Add parallax sections for each image
                 galleryData[galleryType].images.forEach((image, index) => {
                     const section = document.createElement('div');
                     section.className = 'parallax-section';
                     section.style.backgroundImage = `url(${image.src})`;
+                    section.setAttribute('data-index', index);
                     section.innerHTML = `
                         <div class="parallax-content">
                             <p>${image.caption}</p>
@@ -1582,31 +1523,19 @@
                     modalGallery.appendChild(section);
                 });
                 
-                isModalOpen = true;
                 modal.style.display = 'block';
-                setTimeout(() => {
-                    modal.classList.add('show');
-                    // Initialize mobile parallax after modal is fully shown
-                    if (isMobile) {
-                        setTimeout(initMobileParallax, 100);
-                    }
-                }, 10);
+                setTimeout(() => modal.classList.add('show'), 10);
                 document.body.classList.add('no-scroll');
+
+                // Initialize mobile parallax effect
+                if (window.innerWidth <= 768) {
+                    initMobileParallaxOverlay();
+                }
             }
         }
 
         function closeGalleryModal() {
             const modal = document.getElementById('galleryModal');
-            const modalGallery = document.getElementById('modalGallery');
-            
-            // Remove mobile parallax listener
-            if (isMobile) {
-                modalGallery.removeEventListener('scroll', handleMobileParallax);
-                modalGallery.classList.remove('mobile-parallax');
-            }
-            
-            isModalOpen = false;
-            parallaxSections = [];
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
@@ -1660,7 +1589,7 @@
 
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
+            const sidebar = document.getElementBy Facade
             const toggle = document.querySelector('.mobile-toggle');
             
             if (window.innerWidth <= 768 && 
@@ -1701,38 +1630,15 @@
             });
         });
 
+        // Scroll event listener for navigation highlighting
+        window.addEventListener('scroll', updateActiveNav);
+
         // Handle window resize
         window.addEventListener('resize', function() {
-            const newIsMobile = window.innerWidth <= 768;
-            
-            if (newIsMobile !== isMobile) {
-                isMobile = newIsMobile;
-                
-                // Reinitialize parallax if modal is open
-                if (isModalOpen && isMobile) {
-                    setTimeout(initMobileParallax, 100);
-                } else if (isModalOpen && !isMobile) {
-                    // Remove mobile parallax classes and listeners for desktop
-                    const modalGallery = document.getElementById('modalGallery');
-                    modalGallery.removeEventListener('scroll', handleMobileParallax);
-                    modalGallery.classList.remove('mobile-parallax');
-                    
-                    // Reset transforms
-                    parallaxSections.forEach(section => {
-                        section.style.transform = '';
-                        section.style.opacity = '';
-                        section.style.willChange = '';
-                    });
-                }
-            }
-            
             if (window.innerWidth > 768) {
                 document.getElementById('sidebar').classList.remove('mobile-visible');
             }
         });
-
-        // Scroll event listener for navigation highlighting
-        window.addEventListener('scroll', updateActiveNav);
 
         // Initialize page
         window.addEventListener('load', function() {
@@ -1796,160 +1702,56 @@
             });
         });
 
-        // Enhanced mobile touch handling for smoother parallax
-        let rafId = null;
-        let isScrolling = false;
-
-        function optimizedParallaxHandler() {
-            if (rafId) return;
-            
-            rafId = requestAnimationFrame(() => {
-                handleMobileParallax();
-                rafId = null;
-            });
-        }
-
-        // Mobile-specific parallax optimizations
-        if (isMobile) {
-            // Add momentum scrolling for iOS
-            document.addEventListener('touchstart', function() {
-                isScrolling = true;
-            });
-
-            document.addEventListener('touchend', function() {
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 150);
-            });
-
-            // Optimize scroll performance
-            const modalGalleryCheck = document.getElementById('modalGallery');
-            if (modalGalleryCheck) {
-                modalGalleryCheck.addEventListener('scroll', optimizedParallaxHandler, { passive: true });
-            }
-        }
-
-        // Intersection Observer for better performance
-        const observerOptions = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && isMobile && isModalOpen) {
-                    // Trigger parallax update when sections become visible
-                    optimizedParallaxHandler();
-                }
-            });
-        }, observerOptions);
-
-        // Observe sections when modal opens
-        function observeParallaxSections() {
-            if (isMobile && parallaxSections.length) {
-                parallaxSections.forEach(section => {
-                    sectionObserver.observe(section);
-                });
-            }
-        }
-
-        // Clean up observer when modal closes
-        function cleanupObserver() {
-            sectionObserver.disconnect();
-        }
-
-        // Update modal functions to include observer management
-        const originalOpenModal = openGalleryModal;
-        const originalCloseModal = closeGalleryModal;
-
-        openGalleryModal = function(galleryType) {
-            originalOpenModal(galleryType);
-            setTimeout(observeParallaxSections, 200);
-        };
-
-        closeGalleryModal = function() {
-            cleanupObserver();
-            originalCloseModal();
-        };
-
-        // Performance monitoring for mobile
-        if (isMobile && 'performance' in window) {
-            let lastScrollTime = 0;
-            const scrollThreshold = 16; // ~60fps
-
-            function throttledParallax() {
-                const now = performance.now();
-                if (now - lastScrollTime >= scrollThreshold) {
-                    handleMobileParallax();
-                    lastScrollTime = now;
-                }
-            }
-
-            // Use throttled version for better performance
-            handleMobileParallax = throttledParallax;
-        }
-
-        // CSS Hardware acceleration helpers
-        function enableHardwareAcceleration(element) {
-            element.style.transform = 'translateZ(0)';
-            element.style.willChange = 'transform, opacity';
-            element.style.backfaceVisibility = 'hidden';
-            element.style.perspective = '1000px';
-        }
-
-        function disableHardwareAcceleration(element) {
-            element.style.transform = '';
-            element.style.willChange = '';
-            element.style.backfaceVisibility = '';
-            element.style.perspective = '';
-        }
-
-        // Apply hardware acceleration to modal elements
-        function optimizeModalPerformance() {
-            if (isMobile && isModalOpen) {
-                const modal = document.getElementById('galleryModal');
-                const modalGallery = document.getElementById('modalGallery');
-                
-                enableHardwareAcceleration(modal);
-                enableHardwareAcceleration(modalGallery);
-                
-                parallaxSections.forEach(section => {
-                    enableHardwareAcceleration(section);
-                });
-            }
-        }
-
-        // Clean up hardware acceleration
-        function cleanupModalPerformance() {
-            const modal = document.getElementById('galleryModal');
+        // Enhanced mobile parallax effect with overlay
+        function initMobileParallaxOverlay() {
+            const parallaxSections = document.querySelectorAll('.parallax-section');
             const modalGallery = document.getElementById('modalGallery');
             
-            disableHardwareAcceleration(modal);
-            disableHardwareAcceleration(modalGallery);
-            
-            parallaxSections.forEach(section => {
-                disableHardwareAcceleration(section);
+            parallaxSections.forEach((section, index) => {
+                section.style.transform = 'translateZ(0)';
+                section.style.willChange = 'transform, opacity';
+                section.style.backgroundSize = 'cover';
+                section.style.backgroundPosition = 'center center';
+                section.style.backgroundRepeat = 'no-repeat';
+                section.style.zIndex = parallaxSections.length - index; // Reverse stacking order
             });
+
+            function updateParallax() {
+                if (window.innerWidth > 768) return; // Only apply on mobile
+                
+                const scrollTop = modalGallery.scrollTop;
+                const windowHeight = window.innerHeight;
+
+                parallaxSections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const scrollProgress = (scrollTop - sectionTop) / (sectionHeight * 0.8);
+
+                    if (scrollProgress >= -0.5 && scrollProgress <= 1.5) {
+                        const scale = 1 - Math.min(scrollProgress * 0.2, 0.15);
+                        const opacity = 1 - Math.abs(scrollProgress) * 0.3;
+                        const translateY = scrollProgress * 50;
+
+                        section.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                        section.style.opacity = opacity;
+                    } else {
+                        section.style.transform = 'translateY(0) scale(1)';
+                        section.style.opacity = '1';
+                    }
+                });
+            }
+
+            modalGallery.addEventListener('scroll', () => {
+                requestAnimationFrame(updateParallax);
+            });
+
+            // Initialize on load
+            updateParallax();
         }
 
-        // Enhanced modal management
-        const enhancedOpenModal = openGalleryModal;
-        const enhancedCloseModal = closeGalleryModal;
-
-        openGalleryModal = function(galleryType) {
-            enhancedOpenModal(galleryType);
-            setTimeout(() => {
-                optimizeModalPerformance();
-                observeParallaxSections();
-            }, 100);
-        };
-
-        closeGalleryModal = function() {
-            cleanupObserver();
-            cleanupModalPerformance();
-            enhancedCloseModal();
-        };
+        // Call mobile parallax initialization
+        window.addEventListener('load', initMobileParallaxOverlay);
+        window.addEventListener('resize', initMobileParallaxOverlay);
     </script>
 </body>
 </html>
