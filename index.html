@@ -562,10 +562,9 @@
             justify-content: center;
             color: white;
             text-align: center;
-            background-size: contain;
+            background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
             min-height: 500px;
         }
 
@@ -791,38 +790,8 @@
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 1rem;
-                scroll-snap-type: y mandatory;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                height: calc(100vh - 60px); /* Adjust for header */
-                padding-bottom: 20vh;
-            }
-
-            .gallery-grid::-webkit-scrollbar {
-                display: none;
-            }
-
-            .gallery-item {
-                position: sticky;
-                top: 60px; /* Adjust for header */
-                margin-bottom: -10vh;
-                z-index: 1;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                scroll-snap-align: start;
-            }
-
-            .gallery-img {
-                height: 60vh;
-                object-fit: cover;
-                width: 100%;
-            }
-
-            .gallery-item img {
-                height: 60vh;
-                width: 100%;
-                object-fit: cover;
             }
 
             .contact-info {
@@ -859,6 +828,8 @@
                 overflow-y: auto;
                 overflow-x: hidden;
                 -webkit-overflow-scrolling: touch;
+                scroll-snap-type: y mandatory;
+                scroll-behavior: smooth;
             }
 
             .modal-gallery::-webkit-scrollbar {
@@ -874,13 +845,28 @@
                 min-height: 400px;
                 background-size: cover;
                 background-position: center;
-                background-attachment: fixed;
+                position: sticky;
+                top: 60px; /* Account for modal header */
+                margin-bottom: -20vh; /* Create overlap */
+                z-index: 1;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                scroll-snap-align: start;
+            }
+
+            .parallax-section::before {
+                z-index: 2;
             }
 
             .parallax-content {
                 padding: 1.5rem;
                 max-width: 90%;
                 background: rgba(0, 0, 0, 0.7);
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transform: translateY(0);
+                transition: transform 0.3s ease;
             }
 
             .parallax-content p {
@@ -909,6 +895,8 @@
                 background-attachment: scroll;
                 background-size: cover;
                 background-position: center;
+                transform: translateZ(0);
+                will-change: transform, opacity;
             }
 
             .parallax-section::after {
@@ -928,17 +916,9 @@
             }
 
             .parallax-content {
-                position: relative;
+                position: absolute;
+                bottom: 0;
                 z-index: 3;
-            }
-
-            .parallax-section::before {
-                z-index: 2;
-            }
-
-            .gallery-item {
-                transform: translateZ(0);
-                will-change: transform, opacity;
             }
         }
 
@@ -1039,9 +1019,8 @@
                     <span class="artist-name">Binna Binnz</span> 
                     and create unforgettable nights that resonate with music lovers and party enthusiasts.
                 </p>
-                <p style="font-size: 1.1rem; line-height/SDContent-Type: text/html; charset=utf-8
-line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
-                  Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
+                    Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
                 </p>
                 <div style="background: var(--secondary-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color);">
                     <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">Our Mission</h3>
@@ -1191,11 +1170,11 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                 </p>
                 <p class="event-location">📍 Warehouse Bar</p>
             </div>
-              <div class="event-card">
+            <div class="event-card">
                 <div class="event-date">2025</div>
                 <h3 class="event-title">Unruly Friday</h3>
                 <p class="event-description">
-                   No rules just vibes, always wilding out, no limits. its always on friday, breaking the routine and turn up the chaos. it' not just a party it's a vibe you feel in your heart. High-energy sets, premium crowd and the most turnt up good Djs lineup. Always a nightlife experience like no other.
+                    No rules just vibes, always wilding out, no limits. It's always on Friday, breaking the routine and turning up the chaos. It's not just a party, it's a vibe you feel in your heart. High-energy sets, premium crowd, and the most turnt up good DJs lineup. Always a nightlife experience like no other.
                 </p>
                 <p class="event-location">📍 Warehouse Bar</p>
             </div>
@@ -1221,9 +1200,8 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                 <p class="event-description">
                     An exclusive event featuring legendary artists and emerging talent. Experience the perfect fusion of classic hits and fresh sounds in an atmosphere designed for music connoisseurs.
                 </p>
-                <p class="event-location">📍 Warehouse bar</p>
+                <p class="event-location">📍 Warehouse Bar</p>
             </div>
-           
         </section>
 
         <!-- Talents Section -->
@@ -1253,7 +1231,7 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                         <p>Our resident DJs master, mixing the hottest tracks and keeping the energy high all night</p>
                     </div>
                 </div>
-                 <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
+                <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
                     <div class="gallery-img">
                         <img src="jaivah1.jpg" alt="Jaivah">
                     </div>
@@ -1465,7 +1443,7 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
             talents_mafik: {
                 title: 'The Mafik',
                 images: [
-                    { src: 'mafik1.jpg', caption: 'The Mafif' },
+                    { src: 'mafik1.jpg', caption: 'The Mafik' },
                     { src: 'mafik2.jpg', caption: 'The Mafik' },
                     { src: 'mafik3.jpg', caption: 'The Mafik' }
                 ]
@@ -1529,10 +1507,11 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                 modalGallery.innerHTML = '';
                 
                 // Add parallax sections for each image
-                galleryData[galleryType].images.forEach(image => {
+                galleryData[galleryType].images.forEach((image, index) => {
                     const section = document.createElement('div');
                     section.className = 'parallax-section';
                     section.style.backgroundImage = `url(${image.src})`;
+                    section.setAttribute('data-index', index);
                     section.innerHTML = `
                         <div class="parallax-content">
                             <p>${image.caption}</p>
@@ -1544,6 +1523,11 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                 modal.style.display = 'block';
                 setTimeout(() => modal.classList.add('show'), 10);
                 document.body.classList.add('no-scroll');
+
+                // Initialize mobile parallax effect
+                if (window.innerWidth <= 768) {
+                    initMobileParallaxOverlay();
+                }
             }
         }
 
@@ -1664,12 +1648,10 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
-
-            // Initialize gallery parallax on mobile
-            initGalleryParallax();
         });
 
         // Prevent sidebar scroll from affecting main page
+        document.getElementById('sidebar').addEventf
         document.getElementById('sidebar').addEventListener('wheel', function(e) {
             e.preventDefault();
             this.scrollTop += e.deltaY;
@@ -1718,53 +1700,61 @@ line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
             });
         });
 
-        // Enhanced mobile gallery parallax effect
-        function initGalleryParallax() {
-            if (window.innerWidth > 768) return; // Only apply on mobile
+        // Enhanced mobile parallax effect for modal
+        function initMobileParallaxOverlay() {
+            const parallaxSections = document.querySelectorAll('.parallax-section');
+            const modalGallery = document.getElementById('modalGallery');
             
-            const galleryGrids = document.querySelectorAll('.gallery-grid');
-            galleryGrids.forEach(grid => {
-                const galleryItems = grid.querySelectorAll('.gallery-item');
-                galleryItems.forEach((item, index) => {
-                    item.setAttribute('data-index', index);
-                    item.style.zIndex = galleryItems.length - index; // Reverse stacking order
-                });
-
-                function updateParallax() {
-                    const scrollTop = window.scrollY;
-                    const windowHeight = window.innerHeight;
-
-                    galleryItems.forEach(item => {
-                        const itemTop = item.getBoundingClientRect().top + scrollTop;
-                        const itemHeight = item.offsetHeight;
-                        const scrollProgress = (scrollTop - itemTop + windowHeight) / (itemHeight * 0.8);
-
-                        if (scrollProgress >= -0.5 && scrollProgress <= 1.5) {
-                            const scale = 1 - Math.min(scrollProgress * 0.1, 0.1);
-                            const opacity = 1 - Math.abs(scrollProgress) * 0.2;
-                            const translateY = scrollProgress * 30;
-
-                            item.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                            item.style.opacity = opacity;
-                        } else {
-                            item.style.transform = 'translateY(0) scale(1)';
-                            item.style.opacity = '1';
-                        }
-                    });
-                }
-
-                window.addEventListener('scroll', () => {
-                    requestAnimationFrame(updateParallax);
-                });
-
-                // Initialize on load
-                updateParallax();
+            parallaxSections.forEach((section, index) => {
+                section.style.transform = 'translateZ(0)';
+                section.style.willChange = 'transform, opacity';
+                section.style.backgroundSize = 'cover';
+                section.style.backgroundPosition = 'center center';
+                section.style.backgroundRepeat = 'no-repeat';
+                section.style.zIndex = parallaxSections.length - index; // Reverse stacking order
             });
+
+            function updateParallax() {
+                if (window.innerWidth > 768) return; // Only apply on mobile
+                
+                const scrollTop = modalGallery.scrollTop;
+                const windowHeight = window.innerHeight;
+
+                parallaxSections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const scrollProgress = (scrollTop - sectionTop) / (sectionHeight * 0.8);
+
+                    if (scrollProgress >= -0.5 && scrollProgress <= 1.5) {
+                        const scale = 1 - Math.min(scrollProgress * 0.15, 0.1);
+                        const opacity = 1 - Math.abs(scrollProgress) * 0.3;
+                        const translateY = scrollProgress * 50;
+
+                        section.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                        section.style.opacity = opacity;
+                    } else {
+                        section.style.transform = 'translateY(0) scale(1)';
+                        section.style.opacity = '1';
+                    }
+                });
+            }
+
+            modalGallery.addEventListener('scroll', () => {
+                requestAnimationFrame(updateParallax);
+            });
+
+            // Initialize on load
+            updateParallax();
         }
 
         // Call mobile parallax initialization
-        window.addEventListener('load', initGalleryParallax);
-        window.addEventListener('resize', initGalleryParallax);
+        window.addEventListener('load', function() {
+            // Ensure parallax initializes if modal is open
+            if (document.getElementById('galleryModal').style.display === 'block') {
+                initMobileParallaxOverlay();
+            }
+        });
+        window.addEventListener('resize', initMobileParallaxOverlay);
     </script>
 </body>
 </html>
