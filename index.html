@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KING EMPIRE - Premium Event Hosting</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -36,6 +35,18 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
+        }
+
+        /* Fade-up Animation Classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Mobile Parallax Container */
@@ -691,6 +702,8 @@
             margin-bottom: 2rem;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .event-card:hover {
@@ -727,13 +740,18 @@
         }
 
         /* Testimonial Cards */
-.testimonial-card {
+        .testimonial-card {
             background: var(--secondary-bg);
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
             border-left: 4px solid var(--accent-yellow);
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(5px);
         }
 
         .testimonial-quote {
@@ -746,14 +764,14 @@
         .testimonial-author {
             color: var(--accent-yellow);
             font-weight: bold;
-            margin-bottom: 0; /* Remove margin to reduce space */
-            display: inline; /* Keep on the same line */
+            margin-bottom: 0;
+            display: inline;
         }
 
         .testimonial-role {
             color: var(--text-dark-gray);
             font-size: 1rem;
-            margin-left: 0.3rem; /* Add small spacing between author and role */
+            margin-left: 0.3rem;
         }
 
         /* Contact Styles */
@@ -954,6 +972,28 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: bold;
         }
+
+        /* About Section Enhanced Styling */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-box {
+            background: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-box:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(5px);
+            border-color: var(--accent-yellow);
+        }
     </style>
 </head>
 <body>
@@ -1015,11 +1055,11 @@
 
         <!-- About Us Section -->
         <section id="about" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">About KING EMPIRE</h1>
                 <p class="page-subtitle">Your premier destination for exceptional nightclub events</p>
             </div>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div class="about-content fade-up" style="animation-delay: 0.4s;">
                 <p>
                     KING EMPIRE is a leading event hosting organization specializing in creating extraordinary nightclub experiences. We bring together top-tier artists like 
                     <span class="artist-name">South Africa</span> 
@@ -1033,7 +1073,7 @@
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
                   Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
                 </p>
-                <div style="background: var(--secondary-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color);">
+                <div class="mission-box fade-up" style="animation-delay: 0.6s;">
                     <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">Our Mission</h3>
                     <p style="color: var(--text-gray);">To revolutionize the nightlife scene by creating immersive, high-energy events that bring people together through the power of music and exceptional entertainment.</p>
                 </div>
@@ -1042,13 +1082,13 @@
 
         <!-- Gallery Section -->
         <section id="gallery" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Gallery</h1>
                 <p class="page-subtitle">Capturing the energy and excitement of our events</p>
             </div>
             
             <!-- Enhanced Slideshow -->
-            <div class="slideshow-container">
+            <div class="slideshow-container fade-up" style="animation-delay: 0.4s;">
                 <div class="slide active">
                     <img src="dj1.jpg" alt="DJ Performance">
                     <div class="slide-overlay">
@@ -1080,7 +1120,7 @@
                 <button class="slide-nav prev" onclick="changeSlide(-1)">&lt;</button>
                 <button class="slide-nav next" onclick="changeSlide(1)">&gt;</button>
             </div>
-            <div class="slide-controls">
+            <div class="slide-controls fade-up" style="animation-delay: 0.6s;">
                 <span class="slide-dot active" onclick="currentSlide(1)"></span>
                 <span class="slide-dot" onclick="currentSlide(2)"></span>
                 <span class="slide-dot" onclick="currentSlide(3)"></span>
@@ -1088,7 +1128,7 @@
             </div>
 
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openGalleryModal('marioo')">
+                <div class="gallery-item fade-up" style="animation-delay: 0.8s;" onclick="openGalleryModal('marioo')">
                     <div class="gallery-img">
                         <img src="marioo1.jpg" alt="Marioo Live Performance">
                     </div>
@@ -1098,7 +1138,7 @@
                         <p>An electrifying night with Tanzania's finest artist</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('vip')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.0s;" onclick="openGalleryModal('vip')">
                     <div class="gallery-img">
                         <img src="vip1.jpg" alt="VIP Experience">
                     </div>
@@ -1108,7 +1148,7 @@
                         <p>Exclusive access to premium sections and services</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('lighting')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.2s;" onclick="openGalleryModal('lighting')">
                     <div class="gallery-img">
                         <img src="light1.jpg" alt="Sound & Lighting">
                     </div>
@@ -1118,7 +1158,7 @@
                         <p>State-of-the-art production and visual effects</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('atmosphere')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.4s;" onclick="openGalleryModal('atmosphere')">
                     <div class="gallery-img">
                         <img src="event1.jpg" alt="Event Atmosphere">
                     </div>
@@ -1128,7 +1168,7 @@
                         <p>Creating unforgettable memories and experiences</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('crowd')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.6s;" onclick="openGalleryModal('crowd')">
                     <div class="gallery-img">
                         <img src="crowd1.jpg" alt="Crowd Energy">
                     </div>
@@ -1138,7 +1178,7 @@
                         <p>The electric atmosphere our events are known for</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('moments')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.8s;" onclick="openGalleryModal('moments')">
                     <div class="gallery-img">
                         <img src="moment1.jpg" alt="Musical Moments">
                     </div>
@@ -1153,11 +1193,11 @@
 
         <!-- Past Events Section -->
         <section id="past-events" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Past Events</h1>
                 <p class="page-subtitle">A showcase of our successful events and memorable nights</p>
             </div>
-            <div class="event-card">
+            <div class="event-card fade-up" style="animation-delay: 0.4s;">
                 <div class="event-date">Dec 31, 2023</div>
                 <h3 class="event-title">New Year's Eve (Asante 2023) with Marioo</h3>
                 <p class="event-description">
@@ -1165,7 +1205,7 @@
                 </p>
                 <p class="event-location">📍 Warehouse Arena</p>
             </div>
-            <div class="event-card">
+            <div class="event-card fade-up" style="animation-delay: 0.6s;">
                 <div class="event-date">Nov 23, 2024</div>
                 <h3 class="event-title">Z-Fest</h3>
                 <p class="event-description">
@@ -1173,7 +1213,7 @@
                 </p>
                 <p class="event-location">📍 Warehouse Arena</p>
             </div>
-            <div class="event-card">
+            <div class="event-card fade-up" style="animation-delay: 0.8s;">
                 <div class="event-date">2024 - PRESENT</div>
                 <h3 class="event-title">Balcony Sesh</h3>
                 <p class="event-description">
@@ -1181,7 +1221,7 @@
                 </p>
                 <p class="event-location">📍 Warehouse Bar</p>
             </div>
-              <div class="event-card">
+              <div class="event-card fade-up" style="animation-delay: 1.0s;">
                 <div class="event-date">2025</div>
                 <h3 class="event-title">Unruly Friday</h3>
                 <p class="event-description">
@@ -1193,11 +1233,11 @@
 
         <!-- Upcoming Events Section -->
         <section id="upcoming-events" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Upcoming Events</h1>
                 <p class="page-subtitle">Don't miss out on these exciting upcoming experiences</p>
             </div>
-            <div class="event-card">
+            <div class="event-card fade-up" style="animation-delay: 0.4s;">
                 <div class="event-date">Oct 31, 2025</div>
                 <h3 class="event-title">Halloween Spectacular</h3>
                 <p class="event-description">
@@ -1205,7 +1245,7 @@
                 </p>
                 <p class="event-location">📍 Warehouse Bar</p>
             </div>
-            <div class="event-card">
+            <div class="event-card fade-up" style="animation-delay: 0.6s;">
                 <div class="event-date">Sep 10, 2025</div>
                 <h3 class="event-title">Midnight Legends</h3>
                 <p class="event-description">
@@ -1218,12 +1258,12 @@
 
         <!-- Talents Section -->
         <section id="talents" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Our Talents</h1>
                 <p class="page-subtitle">Meet the artists who make our events extraordinary</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openGalleryModal('talents_marioo')">
+                <div class="gallery-item fade-up" style="animation-delay: 0.4s;" onclick="openGalleryModal('talents_marioo')">
                     <div class="gallery-img">
                         <img src="haloo1.jpg" alt="Marioo">
                     </div>
@@ -1233,7 +1273,7 @@
                         <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('talents_djs')">
+                <div class="gallery-item fade-up" style="animation-delay: 0.6s;" onclick="openGalleryModal('talents_djs')">
                     <div class="gallery-img">
                         <img src="dj7.jpg" alt="DJs">
                     </div>
@@ -1243,7 +1283,7 @@
                         <p>Our resident DJs master, mixing the hottest tracks and keeping the energy high all night</p>
                     </div>
                 </div>
-                 <div class="gallery-item" onclick="openGalleryModal('talents_jaivah')">
+                 <div class="gallery-item fade-up" style="animation-delay: 0.8s;" onclick="openGalleryModal('talents_jaivah')">
                     <div class="gallery-img">
                         <img src="jaivah1.jpg" alt="Jaivah">
                     </div>
@@ -1253,7 +1293,7 @@
                         <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('talents_mafik')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.0s;" onclick="openGalleryModal('talents_mafik')">
                     <div class="gallery-img">
                         <img src="mafik1.jpg" alt="The Mafik">
                     </div>
@@ -1263,7 +1303,7 @@
                         <p>Emerging best group talents in Tanzania.</p>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openGalleryModal('talents_international')">
+                <div class="gallery-item fade-up" style="animation-delay: 1.2s;" onclick="openGalleryModal('talents_international')">
                     <div class="gallery-img">
                         <img src="act1.jpg" alt="International Acts">
                     </div>
@@ -1278,32 +1318,32 @@
 
         <!-- Testimonials Section -->
         <section id="testimonials" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Testimonials</h1>
                 <p class="page-subtitle">What our clients and guests say about us</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-up" style="animation-delay: 0.4s;">
                 <p class="testimonial-quote">
                     "KING EMPIRE delivered an absolutely incredible experience! The Marioo performance was beyond our expectations, and the organization was flawless. Our guests are still talking about it weeks later."
                 </p>
                 <p class="testimonial-author">Eric Chinn</p>
                 <p class="testimonial-role">Director.</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-up" style="animation-delay: 0.6s;">
                 <p class="testimonial-quote">
                     "The attention to detail and professionalism shown by the KING EMPIRE team was outstanding. They transformed our venue into something magical and created an unforgettable night for everyone."
                 </p>
                 <p class="testimonial-author">Jesse Santan</p>
                 <p class="testimonial-role">Venue Owner.</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-up" style="animation-delay: 0.8s;">
                 <p class="testimonial-quote">
                     "Working with KING EMPIRE was a game-changer for our nightclub. The events they organize bring in amazing crowds and create the perfect atmosphere. Highly recommended!"
                 </p>
                 <p class="testimonial-author">Victor</p>
                 <p class="testimonial-role">Club Manager.</p>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card fade-up" style="animation-delay: 1.0s;">
                 <p class="testimonial-quote">
                     "I've attended multiple KING EMPIRE events and each one has been better than the last. The energy, the music, the production quality - everything is top-notch. Can't wait for the next one!"
                 </p>
@@ -1314,11 +1354,11 @@
 
         <!-- Contact Section -->
         <section id="contact" class="page-section">
-            <div class="page-header">
+            <div class="page-header fade-up" style="animation-delay: 0.2s;">
                 <h1 class="page-title">Contact Us</h1>
                 <p class="page-subtitle">Get in touch for more information about our events</p>
             </div>
-            <div class="contact-info">
+            <div class="contact-info fade-up" style="animation-delay: 0.4s;">
                 <a href="mailto:info@kingempire.co.tz" class="get-in-touch-button">Get in Touch</a>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
                     <div>
@@ -1370,54 +1410,54 @@
             marioo: {
                 title: 'Marioo Live Performance',
                 images: [
-                    { src: 'marioo1.jpg', caption: 'Marioo on stage electrifying the crowd' },
-                    { src: 'marioo2.jpg', caption: 'High energy performance moments' },
-                    { src: 'marioo3.jpg', caption: 'Crowd singing along to hit songs' },
-                    { src: 'marioo4.jpg', caption: 'Perfect stage lighting and atmosphere' },
-                    { src: 'marioo5.jpg', caption: 'Unforgettable musical experience' },
-                    { src: 'marioo6.jpg', caption: 'The artist connecting with fans' }
+                    { src: 'marioo1.jpg' },
+                    { src: 'marioo2.jpg' },
+                    { src: 'marioo3.jpg' },
+                    { src: 'marioo4.jpg' },
+                    { src: 'marioo5.jpg' },
+                    { src: 'marioo6.jpg' }
                 ]
             },
             vip: {
                 title: 'VIP Experience',
                 images: [
-                    { src: 'vip1.jpg', caption: 'Exclusive VIP lounge area' },
-                    { src: 'vip2.jpg', caption: 'Premium seating and service' },
-                    { src: 'vip3.jpg', caption: 'Luxury amenities for VIP guests' }
+                    { src: 'vip1.jpg' },
+                    { src: 'vip2.jpg' },
+                    { src: 'vip3.jpg' }
                 ]
             },
             lighting: {
                 title: 'Sound & Lighting',
                 images: [
-                    { src: 'light1.jpg', caption: 'Professional lighting setup' },
-                    { src: 'light2.jpg', caption: 'Dynamic light shows' },
-                    { src: 'light3.jpg', caption: 'State-of-the-art light system' }
+                    { src: 'light1.jpg' },
+                    { src: 'light2.jpg' },
+                    { src: 'light3.jpg' }
                 ]
             },
             atmosphere: {
                 title: 'Event Atmosphere',
                 images: [
-                    { src: 'event1.jpg', caption: 'Perfect event ambiance' },
-                    { src: 'event2.jpg', caption: 'Guests enjoying the night' },
-                    { src: 'event3.jpg', caption: 'Memorable moments created' }
+                    { src: 'event1.jpg' },
+                    { src: 'event2.jpg' },
+                    { src: 'event3.jpg' }
                 ]
             },
             crowd: {
                 title: 'Crowd Energy',
                 images: [
-                    { src: 'crowd1.jpg', caption: 'Electric crowd energy' },
-                    { src: 'crowd2.jpg', caption: 'Dancing and celebration' },
-                    { src: 'crowd3.jpg', caption: 'Packed dance floor' },
-                    { src: 'crowd4.jpg', caption: 'Unforgettable night atmosphere' }
+                    { src: 'crowd1.jpg' },
+                    { src: 'crowd2.jpg' },
+                    { src: 'crowd3.jpg' },
+                    { src: 'crowd4.jpg' }
                 ]
             },
             moments: {
                 title: 'Musical Moments',
                 images: [
-                    { src: 'moment1.jpg', caption: 'Perfect musical harmony' },
-                    { src: 'moment2.jpg', caption: 'Artist and audience connection' },
-                    { src: 'moment3.jpg', caption: 'Magical performance moments' },
-                    { src: 'moment4.jpg', caption: 'Creating lasting memories' }
+                    { src: 'moment1.jpg' },
+                    { src: 'moment2.jpg' },
+                    { src: 'moment3.jpg' },
+                    { src: 'moment4.jpg' }
                 ]
             },
             slideshow: {
@@ -1432,526 +1472,265 @@
             talents_marioo: {
                 title: 'Marioo',
                 images: [
-                    { src: 'haloo1.jpg', caption: 'Marioo' },
-                    { src: 'haloo2.jpg', caption: 'Marioo' }
+                    { src: 'haloo1.jpg' },
+                    { src: 'haloo2.jpg' }
                 ]
             },
             talents_jaivah: {
                 title: 'Jaivah',
                 images: [
-                    { src: 'jaivah1.jpg', caption: 'Jaivah' },
-                    { src: 'jaivah2.jpg', caption: 'Jaivah' },
-                    { src: 'jaivah3.jpg', caption: 'Jaivah' }
+                    { src: 'jaivah1.jpg' },
+                    { src: 'jaivah2.jpg' },
+                    { src: 'jaivah3.jpg' }
                 ]
             },
             talents_djs: {
                 title: 'DJs',
                 images: [
-                    { src: 'dj3.jpg', caption: 'DJ' },
-                    { src: 'dj6.jpg', caption: 'DJ' },
-                    { src: 'dj7.jpg', caption: 'DJ' }
+                    { src: 'dj3.jpg' },
+                    { src: 'dj6.jpg' },
+                    { src: 'dj7.jpg' }
                 ]
             },
             talents_mafik: {
                 title: 'The Mafik',
                 images: [
-                    { src: 'mafik1.jpg', caption: 'The Mafik' },
-                    { src: 'mafik2.jpg', caption: 'The Mafik' },
-                    { src: 'mafik3.jpg', caption: 'The Mafik' }
+                    { src: 'mafik1.jpg' },
+                    { src: 'mafik2.jpg' },
+                    { src: 'mafik3.jpg' }
                 ]
             },
             talents_international: {
                 title: 'International Acts',
                 images: [
-                    { src: 'act1.jpg', caption: 'International act' }
+                    { src: 'act1.jpg' }
                 ]
             }
         };
 
-        // Mobile parallax variables
-        let parallaxSections = [];
-        let isModalOpen = false;
-        let isMobile = window.innerWidth <= 768;
-
-        // Slideshow functionality
-        let slideIndex = 1;
-
-        function changeSlide(n) {
-            showSlide(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
-
-        function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slide-dot');
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.querySelector('.mobile-toggle');
             
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
+            sidebar.classList.toggle('mobile-visible');
             
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            if (slides[slideIndex - 1]) {
-                slides[slideIndex - 1].classList.add('active');
-            }
-            if (dots[slideIndex - 1]) {
-                dots[slideIndex - 1].classList.add('active');
+            if (sidebar.classList.contains('mobile-visible')) {
+                mobileToggle.innerHTML = '×';
+                document.body.classList.add('no-scroll');
+            } else {
+                mobileToggle.innerHTML = '☰';
+                document.body.classList.remove('no-scroll');
             }
         }
 
-        // Auto slideshow
-        function autoSlide() {
-            slideIndex++;
-            showSlide(slideIndex);
-        }
-
-        // Start auto slideshow
-        setInterval(autoSlide, 4000);
-
-        // Mobile Parallax Functions
-        function initMobileParallax() {
-            if (isMobile && isModalOpen) {
-                const modalGallery = document.getElementById('modalGallery');
-                parallaxSections = modalGallery.querySelectorAll('.parallax-section');
-                
-                // Add mobile parallax class
-                modalGallery.classList.add('mobile-parallax');
-                
-                // Set up scroll listener for parallax effect
-                modalGallery.addEventListener('scroll', handleMobileParallax, { passive: true });
-            }
-        }
-
-        function handleMobileParallax() {
-            if (!isMobile || !parallaxSections.length) return;
+        // Navigation functionality
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
             
-            const modalGallery = document.getElementById('modalGallery');
-            const scrollTop = modalGallery.scrollTop;
-            const containerHeight = modalGallery.clientHeight;
-            
-            parallaxSections.forEach((section, index) => {
-                const sectionTop = index * containerHeight;
-                const sectionBottom = sectionTop + containerHeight;
-                const relativeScroll = scrollTop - sectionTop;
-                const scrollProgress = relativeScroll / containerHeight;
-                
-                // Apply parallax transform based on scroll position
-                if (scrollTop >= sectionTop - containerHeight && scrollTop <= sectionBottom + containerHeight) {
-                    // Calculate parallax offset
-                    const parallaxOffset = Math.max(-100, Math.min(100, scrollProgress * 50));
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
                     
-                    // Apply transform with hardware acceleration
-                    section.style.transform = `translateY(${parallaxOffset}px) translateZ(0)`;
-                    section.style.willChange = 'transform';
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                     
-                    // Adjust opacity for smooth transitions
-                    const opacity = Math.max(0.3, Math.min(1, 1 - Math.abs(scrollProgress) * 0.5));
-                    section.style.opacity = opacity;
-                } else {
-                    // Reset transform for sections out of view
-                    section.style.transform = 'translateY(0) translateZ(0)';
-                    section.style.opacity = 1;
-                }
+                    // Update active nav link
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar.classList.contains('mobile-visible')) {
+                        toggleSidebar();
+                    }
+                });
             });
         }
 
-        // Gallery Modal Functions
+        // Slideshow functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlideIndex = (n + slides.length) % slides.length;
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlideIndex + direction);
+        }
+
+        function currentSlide(n) {
+            showSlide(n - 1);
+        }
+
+        // Auto-advance slideshow
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Gallery modal functionality
         function openGalleryModal(galleryType) {
             const modal = document.getElementById('galleryModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalGallery = document.getElementById('modalGallery');
             
-            if (galleryData[galleryType]) {
-                modalTitle.textContent = galleryData[galleryType].title;
-                
-                // Clear existing content and classes
-                modalGallery.innerHTML = '';
-                modalGallery.classList.remove('mobile-parallax');
-                
-                // Add parallax sections for each image
-                galleryData[galleryType].images.forEach((image, index) => {
-                    const section = document.createElement('div');
-                    section.className = 'parallax-section';
-                    section.style.backgroundImage = `url(${image.src})`;
-                    section.innerHTML = `
+            const data = galleryData[galleryType];
+            if (!data) return;
+            
+            modalTitle.textContent = data.title;
+            
+            // Check if mobile device
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                modalGallery.className = 'modal-gallery mobile-parallax';
+                modalGallery.innerHTML = data.images.map(image => `
+                    <div class="parallax-section" style="background-image: url('${image.src}');">
                         <div class="parallax-content">
-                            <p>${image.caption}</p>
+                            ${image.caption ? `<h3 class="mobile-parallax-title">${image.caption}</h3>` : ''}
                         </div>
-                    `;
-                    modalGallery.appendChild(section);
-                });
-                
-                isModalOpen = true;
-                modal.style.display = 'block';
-                setTimeout(() => {
-                    modal.classList.add('show');
-                    // Initialize mobile parallax after modal is fully shown
-                    if (isMobile) {
-                        setTimeout(initMobileParallax, 100);
-                    }
-                }, 10);
-                document.body.classList.add('no-scroll');
+                    </div>
+                `).join('');
+            } else {
+                modalGallery.className = 'modal-gallery';
+                modalGallery.innerHTML = data.images.map(image => `
+                    <div class="parallax-section" style="background-image: url('${image.src}');">
+                        <div class="parallax-content">
+                            ${image.caption ? `<h2 style="color: var(--accent-yellow); font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">${image.caption}</h2>` : ''}
+                        </div>
+                    </div>
+                `).join('');
             }
+            
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('show'), 10);
+            document.body.classList.add('no-scroll');
         }
 
         function closeGalleryModal() {
             const modal = document.getElementById('galleryModal');
-            const modalGallery = document.getElementById('modalGallery');
-            
-            // Remove mobile parallax listener
-            if (isMobile) {
-                modalGallery.removeEventListener('scroll', handleMobileParallax);
-                modalGallery.classList.remove('mobile-parallax');
-            }
-            
-            isModalOpen = false;
-            parallaxSections = [];
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
-                document.body.classList.remove('no-scroll');
             }, 300);
+            document.body.classList.remove('no-scroll');
         }
 
-        // Mobile Menu Toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('mobile-visible');
-        }
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        // Navigation highlighting on scroll
-        function updateActiveNav() {
-            const sections = document.querySelectorAll('.page-section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const scrollPos = window.scrollY + 100;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Add 3D transform effect on hover for cards
+                        if (entry.target.classList.contains('event-card') || 
+                            entry.target.classList.contains('gallery-item') || 
+                            entry.target.classList.contains('testimonial-card') ||
+                            entry.target.classList.contains('mission-box')) {
+                            entry.target.addEventListener('mousemove', handleMouseMove);
+                            entry.target.addEventListener('mouseleave', handleMouseLeave);
+                        }
+                    }
+                });
+            }, observerOptions);
 
-            sections.forEach((section, index) => {
-                const top = section.offsetTop;
-                const bottom = top + section.offsetHeight;
-
-                if (scrollPos >= top && scrollPos <= bottom) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    navLinks[index].classList.add('active');
-                }
+            // Observe all fade-up elements
+            document.querySelectorAll('.fade-up').forEach(el => {
+                observer.observe(el);
             });
         }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    document.getElementById('sidebar').classList.remove('mobile-visible');
-                }
-            });
-        });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-toggle');
+        // 3D card hover effect
+        function handleMouseMove(e) {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            if (window.innerWidth <= 768 && 
-                !sidebar.contains(event.target) && 
-                !toggle.contains(event.target)) {
-                sidebar.classList.remove('mobile-visible');
-            }
-        });
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const galleryModal = document.getElementById('galleryModal');
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
             
-            if (event.target === galleryModal) {
-                closeGalleryModal();
-            }
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
         }
 
-        // Keyboard navigation for modals
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const galleryModal = document.getElementById('galleryModal');
-                
-                if (galleryModal.classList.contains('show')) {
-                    closeGalleryModal();
-                }
-            }
-        });
+        function handleMouseLeave(e) {
+            const card = e.currentTarget;
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        }
 
-        // Add hover effects to cards
-        document.querySelectorAll('.event-card, .testimonial-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        // Update active navigation on scroll
+        function initScrollNavigation() {
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                const scrollPos = window.pageYOffset + 200;
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const newIsMobile = window.innerWidth <= 768;
-            
-            if (newIsMobile !== isMobile) {
-                isMobile = newIsMobile;
-                
-                // Reinitialize parallax if modal is open
-                if (isModalOpen && isMobile) {
-                    setTimeout(initMobileParallax, 100);
-                } else if (isModalOpen && !isMobile) {
-                    // Remove mobile parallax classes and listeners for desktop
-                    const modalGallery = document.getElementById('modalGallery');
-                    modalGallery.removeEventListener('scroll', handleMobileParallax);
-                    modalGallery.classList.remove('mobile-parallax');
-                    
-                    // Reset transforms
-                    parallaxSections.forEach(section => {
-                        section.style.transform = '';
-                        section.style.opacity = '';
-                        section.style.willChange = '';
-                    });
-                }
-            }
-            
-            if (window.innerWidth > 768) {
-                document.getElementById('sidebar').classList.remove('mobile-visible');
-            }
-        });
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
 
-        // Scroll event listener for navigation highlighting
-        window.addEventListener('scroll', updateActiveNav);
-
-        // Initialize page
-        window.addEventListener('load', function() {
-            showSlide(slideIndex);
-            updateActiveNav();
-            
-            // Add loading animation
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Prevent sidebar scroll from affecting main page
-        document.getElementById('sidebar').addEventListener('wheel', function(e) {
-            e.preventDefault();
-            this.scrollTop += e.deltaY;
-        });
-
-        // Enhanced touch scrolling for sidebar
-        let touchStartY = 0;
-        let touchStartScroll = 0;
-        const sidebar = document.getElementById('sidebar');
-
-        sidebar.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            touchStartScroll = this.scrollTop;
-        });
-
-        sidebar.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-            const touchY = e.touches[0].clientY;
-            const deltaY = touchStartY - touchY;
-            this.scrollTop = touchStartScroll + deltaY;
-        }, { passive: false });
-
-        // Image loading error handling
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    // Create a fallback colored rectangle with icon
-                    const fallback = document.createElement('div');
-                    fallback.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(45deg, var(--secondary-bg), var(--hover-bg));
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: var(--text-gray);
-                        font-size: 2rem;
-                    `;
-                    fallback.innerHTML = '📸';
-                    
-                    if (this.parentNode) {
-                        this.parentNode.replaceChild(fallback, this);
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
                     }
                 });
             });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            initScrollAnimations();
+            initScrollNavigation();
+            
+            // Close modal when clicking outside
+            document.getElementById('galleryModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeGalleryModal();
+                }
+            });
+
+            // Close modal with escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeGalleryModal();
+                }
+            });
         });
 
-        // Enhanced mobile touch handling for smoother parallax
-        let rafId = null;
-        let isScrolling = false;
-
-        function optimizedParallaxHandler() {
-            if (rafId) return;
-            
-            rafId = requestAnimationFrame(() => {
-                handleMobileParallax();
-                rafId = null;
-            });
-        }
-
-        // Mobile-specific parallax optimizations
-        if (isMobile) {
-            // Add momentum scrolling for iOS
-            document.addEventListener('touchstart', function() {
-                isScrolling = true;
-            });
-
-            document.addEventListener('touchend', function() {
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 150);
-            });
-
-            // Optimize scroll performance
-            const modalGalleryCheck = document.getElementById('modalGallery');
-            if (modalGalleryCheck) {
-                modalGalleryCheck.addEventListener('scroll', optimizedParallaxHandler, { passive: true });
+        // Handle window resize for responsive behavior
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 768 && sidebar.classList.contains('mobile-visible')) {
+                toggleSidebar();
             }
-        }
-
-        // Intersection Observer for better performance
-        const observerOptions = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && isMobile && isModalOpen) {
-                    // Trigger parallax update when sections become visible
-                    optimizedParallaxHandler();
-                }
-            });
-        }, observerOptions);
-
-        // Observe sections when modal opens
-        function observeParallaxSections() {
-            if (isMobile && parallaxSections.length) {
-                parallaxSections.forEach(section => {
-                    sectionObserver.observe(section);
-                });
-            }
-        }
-
-        // Clean up observer when modal closes
-        function cleanupObserver() {
-            sectionObserver.disconnect();
-        }
-
-        // Update modal functions to include observer management
-        const originalOpenModal = openGalleryModal;
-        const originalCloseModal = closeGalleryModal;
-
-        openGalleryModal = function(galleryType) {
-            originalOpenModal(galleryType);
-            setTimeout(observeParallaxSections, 200);
-        };
-
-        closeGalleryModal = function() {
-            cleanupObserver();
-            originalCloseModal();
-        };
-
-        // Performance monitoring for mobile
-        if (isMobile && 'performance' in window) {
-            let lastScrollTime = 0;
-            const scrollThreshold = 16; // ~60fps
-
-            function throttledParallax() {
-                const now = performance.now();
-                if (now - lastScrollTime >= scrollThreshold) {
-                    handleMobileParallax();
-                    lastScrollTime = now;
-                }
-            }
-
-            // Use throttled version for better performance
-            handleMobileParallax = throttledParallax;
-        }
-
-        // CSS Hardware acceleration helpers
-        function enableHardwareAcceleration(element) {
-            element.style.transform = 'translateZ(0)';
-            element.style.willChange = 'transform, opacity';
-            element.style.backfaceVisibility = 'hidden';
-            element.style.perspective = '1000px';
-        }
-
-        function disableHardwareAcceleration(element) {
-            element.style.transform = '';
-            element.style.willChange = '';
-            element.style.backfaceVisibility = '';
-            element.style.perspective = '';
-        }
-
-        // Apply hardware acceleration to modal elements
-        function optimizeModalPerformance() {
-            if (isMobile && isModalOpen) {
-                const modal = document.getElementById('galleryModal');
-                const modalGallery = document.getElementById('modalGallery');
-                
-                enableHardwareAcceleration(modal);
-                enableHardwareAcceleration(modalGallery);
-                
-                parallaxSections.forEach(section => {
-                    enableHardwareAcceleration(section);
-                });
-            }
-        }
-
-        // Clean up hardware acceleration
-        function cleanupModalPerformance() {
-            const modal = document.getElementById('galleryModal');
-            const modalGallery = document.getElementById('modalGallery');
-            
-            disableHardwareAcceleration(modal);
-            disableHardwareAcceleration(modalGallery);
-            
-            parallaxSections.forEach(section => {
-                disableHardwareAcceleration(section);
-            });
-        }
-
-        // Enhanced modal management
-        const enhancedOpenModal = openGalleryModal;
-        const enhancedCloseModal = closeGalleryModal;
-
-        openGalleryModal = function(galleryType) {
-            enhancedOpenModal(galleryType);
-            setTimeout(() => {
-                optimizeModalPerformance();
-                observeParallaxSections();
-            }, 100);
-        };
-
-        closeGalleryModal = function() {
-            cleanupObserver();
-            cleanupModalPerformance();
-            enhancedCloseModal();
-        };
+        });
     </script>
 </body>
 </html>
