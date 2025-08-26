@@ -1658,12 +1658,21 @@
             });
         }
 
-        // 3D card hover effect
-        function handleMouseMove(e) {
-            const card = e.currentTarget;
+        // Enhanced 3D card effects with touch support
+        function calculate3DTransform(e, card, isTouch = false) {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            let x, y;
+            
+            if (isTouch && e.touches && e.touches.length > 0) {
+                x = e.touches[0].clientX - rect.left;
+                y = e.touches[0].clientY - rect.top;
+            } else if (isTouch && e.changedTouches && e.changedTouches.length > 0) {
+                x = e.changedTouches[0].clientX - rect.left;
+                y = e.changedTouches[0].clientY - rect.top;
+            } else {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            }
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
@@ -1671,12 +1680,91 @@
             const rotateX = (y - centerY) / 10;
             const rotateY = (centerX - x) / 10;
             
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            // Clamp rotation values for better UX
+            const clampedRotateX = Math.max(-15, Math.min(15, rotateX));
+            const clampedRotateY = Math.max(-15, Math.min(15, rotateY));
+            
+            return { rotateX: clampedRotateX, rotateY: clampedRotateY };
+        }
+
+        function apply3DTransform(card, rotateX, rotateY, translateZ = 10) {
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+            card.style.transition = 'transform 0.1s ease-out';
+        }
+
+        function reset3DTransform(card) {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            card.style.transition = 'transform 0.3s ease-out';
+        }
+
+        // Mouse event handlers
+        function handleMouseMove(e) {
+            // Prevent mouse events if touch is active
+            if (e.currentTarget.touchActive) return;
+            
+            const card = e.currentTarget;
+            const { rotateX, rotateY } = calculate3DTransform(e, card, false);
+            apply3DTransform(card, rotateX, rotateY);
         }
 
         function handleMouseLeave(e) {
+            // Prevent mouse events if touch is active
+            if (e.currentTarget.touchActive) return;
+            
             const card = e.currentTarget;
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            reset3DTransform(card);
+        }
+
+        function handleMouseEnter(e) {
+            // Prevent mouse events if touch is active
+            if (e.currentTarget.touchActive) return;
+            
+            const card = e.currentTarget;
+            card.style.transition = 'transform 0.1s ease-out';
+        }
+
+        // Touch event handlers
+        function handleTouchStart(e) {
+            e.preventDefault(); // Prevent scrolling and mouse events
+            const card = e.currentTarget;
+            card.touchActive = true;
+            card.style.transition = 'transform 0.1s ease-out';
+            
+            // Calculate initial transform
+            const { rotateX, rotateY } = calculate3DTransform(e, card, true);
+            apply3DTransform(card, rotateX, rotateY);
+            
+            // Clear any existing timeout
+            if (card.touchResetTimeout) {
+                clearTimeout(card.touchResetTimeout);
+            }
+        }
+
+        function handleTouchMove(e) {
+            e.preventDefault(); // Prevent scrolling
+            const card = e.currentTarget;
+            
+            if (!card.touchActive) return;
+            
+            const { rotateX, rotateY } = calculate3DTransform(e, card, true);
+            apply3DTransform(card, rotateX, rotateY);
+        }
+
+        function handleTouchEnd(e) {
+            e.preventDefault();
+            const card = e.currentTarget;
+            
+            // Smoothly return to original position
+            reset3DTransform(card);
+            
+            // Reset touch active flag after a short delay to prevent mouse events
+            card.touchResetTimeout = setTimeout(() => {
+                card.touchActive = false;
+            }, 500);
+        }
+
+        function handleTouchCancel(e) {
+            handleTouchEnd(e);
         }
 
         // Update active navigation on scroll
