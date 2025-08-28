@@ -828,8 +828,11 @@
                 font-size: 1.5rem;
             }
             /* Mobile touch-specific styles */
-            .gallery-item, .event-card, .testimonial-card, .mission-box {
-                touch-action: none; /* Prevent default touch behaviors */
+            .event-card, .testimonial-card, .mission-box {
+                touch-action: none; /* Prevent default touch behaviors for non-clickable cards */
+            }
+            .touchable {
+                touch-action: auto; /* Allow tap events for gallery items and contact links */
             }
         }
         body.no-scroll {
@@ -939,7 +942,7 @@
                     and create unforgettable nights that resonate with music lovers and party enthusiasts.
                 </p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
-                  Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
+                    Our team of experienced event professionals works tirelessly to curate the perfect atmosphere, combining cutting-edge sound systems, spectacular lighting, and world-class talent to deliver experiences that exceed expectations. Over the years, we've proudly hosted signature events such as Balcony Sesh, Z-Fest, Time-Out New Year's Eve, Asante 2023, and The Amapiano Experience, each leaving lasting memories with our audiences.
                 </p>
                 <div class="mission-box fade-up" style="animation-delay: 0.6s;">
                     <h3 style="color: var(--accent-yellow); margin-bottom: 1rem;">Our Mission</h3>
@@ -993,7 +996,7 @@
                 <span class="slide-dot" onclick="currentSlide(4)"></span>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item fade-up" style="animation-delay: 0.8s;" onclick="openGalleryModal('marioo')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 0.8s;" onclick="openGalleryModal('marioo')">
                     <div class="gallery-img">
                         <img src="marioo1.jpg" alt="Marioo Live Performance">
                     </div>
@@ -1003,7 +1006,7 @@
                         <p>An electrifying night with Tanzania's finest artist</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.0s;" onclick="openGalleryModal('vip')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.0s;" onclick="openGalleryModal('vip')">
                     <div class="gallery-img">
                         <img src="vip1.jpg" alt="VIP Experience">
                     </div>
@@ -1013,7 +1016,7 @@
                         <p>Exclusive access to premium sections and services</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.2s;" onclick="openGalleryModal('lighting')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.2s;" onclick="openGalleryModal('lighting')">
                     <div class="gallery-img">
                         <img src="light1.jpg" alt="Sound & Lighting">
                     </div>
@@ -1023,7 +1026,7 @@
                         <p>State-of-the-art production and visual effects</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.4s;" onclick="openGalleryModal('atmosphere')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.4s;" onclick="openGalleryModal('atmosphere')">
                     <div class="gallery-img">
                         <img src="event1.jpg" alt="Event Atmosphere">
                     </div>
@@ -1033,7 +1036,7 @@
                         <p>Creating unforgettable memories and experiences</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.6s;" onclick="openGalleryModal('crowd')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.6s;" onclick="openGalleryModal('crowd')">
                     <div class="gallery-img">
                         <img src="crowd1.jpg" alt="Crowd Energy">
                     </div>
@@ -1043,7 +1046,7 @@
                         <p>The electric atmosphere our events are known for</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.8s;" onclick="openGalleryModal('moments')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.8s;" onclick="openGalleryModal('moments')">
                     <div class="gallery-img">
                         <img src="moment1.jpg" alt="Musical Moments">
                     </div>
@@ -1124,7 +1127,7 @@
                 <p class="page-subtitle">Meet the artists who make our events extraordinary</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item fade-up" style="animation-delay: 0.4s;" onclick="openGalleryModal('talents_marioo')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 0.4s;" onclick="openGalleryModal('talents_marioo')">
                     <div class="gallery-img">
                         <img src="haloo1.jpg" alt="Marioo">
                     </div>
@@ -1134,7 +1137,7 @@
                         <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 0.6s;" onclick="openGalleryModal('talents_djs')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 0.6s;" onclick="openGalleryModal('talents_djs')">
                     <div class="gallery-img">
                         <img src="dj7.jpg" alt="DJs">
                     </div>
@@ -1144,7 +1147,7 @@
                         <p>Our resident DJs master, mixing the hottest tracks and keeping the energy high all night</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 0.8s;" onclick="openGalleryModal('talents_jaivah')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 0.8s;" onclick="openGalleryModal('talents_jaivah')">
                     <div class="gallery-img">
                         <img src="jaivah1.jpg" alt="Jaivah">
                     </div>
@@ -1154,7 +1157,7 @@
                         <p>Tanzania's premier Bongo Flava artist, known for chart-topping hits and electrifying performances</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.0s;" onclick="openGalleryModal('talents_mafik')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.0s;" onclick="openGalleryModal('talents_mafik')">
                     <div class="gallery-img">
                         <img src="mafik1.jpg" alt="The Mafik">
                     </div>
@@ -1164,7 +1167,7 @@
                         <p>Emerging best group talents in Tanzania.</p>
                     </div>
                 </div>
-                <div class="gallery-item fade-up" style="animation-delay: 1.2s;" onclick="openGalleryModal('talents_international')">
+                <div class="gallery-item fade-up touchable" style="animation-delay: 1.2s;" onclick="openGalleryModal('talents_international')">
                     <div class="gallery-img">
                         <img src="act1.jpg" alt="International Acts">
                     </div>
@@ -1220,15 +1223,15 @@
             <div class="contact-info event-card fade-up" style="animation-delay: 0.4s;">
                 <a href="mailto:info@kingempire.co.tz" class="get-in-touch-button">Get in Touch</a>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                    <div class="contact-item fade-up" style="animation-delay: 0.6s;">
+                    <div class="contact-item fade-up touchable" style="animation-delay: 0.6s;">
                         <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📧 Email:</strong></p>
                         <p><a href="mailto:info@kingempire.co.tz" class="contact-link">info@kingempire.co.tz</a></p>
                     </div>
-                    <div class="contact-item fade-up" style="animation-delay: 0.8s;">
+                    <div class="contact-item fade-up touchable" style="animation-delay: 0.8s;">
                         <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📱 Phone:</strong></p>
                         <p><a href="tel:+255696798889" class="contact-link">+255 696 798 889</a></p>
                     </div>
-                    <div class="contact-item fade-up" style="animation-delay: 1.0s;">
+                    <div class="contact-item fade-up touchable" style="animation-delay: 1.0s;">
                         <p style="color: var(--text-gray); margin-bottom: 0.5rem;"><strong>📍 Location:</strong></p>
                         <p><a href="https://www.google.com/maps/dir/?api=1&destination=Warehouse,+Haile+Selassie+Road,+Masaki,+Dar+es+Salaam,+Tanzania" target="_blank" class="contact-link">Warehouse, Haile Selassie Road, Dar es Salaam</a></p>
                         <p style="color: var(--text-gray); font-size: 0.9rem;">(Get directions in Google Maps)</p>
@@ -1480,6 +1483,10 @@
                                 entry.target.addEventListener('touchmove', handleTouchMove, { passive: false });
                                 entry.target.addEventListener('touchend', handleTouchEnd, { passive: false });
                                 entry.target.addEventListener('touchcancel', handleTouchCancel, { passive: false });
+                                // Add touchend listener for gallery items to trigger modal
+                                if (entry.target.classList.contains('gallery-item')) {
+                                    entry.target.addEventListener('touchend', handleGalleryTouchEnd, { passive: false });
+                                }
                             } else {
                                 // Desktop: Add mouse event listeners
                                 entry.target.addEventListener('mousemove', handleMouseMove);
@@ -1493,6 +1500,7 @@
                         entry.target.removeEventListener('touchmove', handleTouchMove);
                         entry.target.removeEventListener('touchend', handleTouchEnd);
                         entry.target.removeEventListener('touchcancel', handleTouchCancel);
+                        entry.target.removeEventListener('touchend', handleGalleryTouchEnd);
                         entry.target.removeEventListener('mousemove', handleMouseMove);
                         entry.target.removeEventListener('mouseleave', handleMouseLeave);
                         entry.target.removeEventListener('mouseenter', handleMouseEnter);
@@ -1553,8 +1561,13 @@
         }
         // Touch event handlers
         function handleTouchStart(e) {
-            e.preventDefault();
             const card = e.currentTarget;
+            const target = e.target;
+            // Allow default behavior for clickable elements
+            if (card.classList.contains('touchable') && (target.tagName === 'A' || card.hasAttribute('onclick'))) {
+                return; // Let default tap behavior proceed
+            }
+            e.preventDefault();
             card.touchActive = true;
             card.style.transition = 'transform 0.1s ease-out';
             const { rotateX, rotateY } = calculate3DTransform(e, card, true);
@@ -1564,15 +1577,26 @@
             }
         }
         function handleTouchMove(e) {
-            e.preventDefault();
             const card = e.currentTarget;
+            const target = e.target;
+            if (card.classList.contains('touchable') && (target.tagName === 'A' || card.hasAttribute('onclick'))) {
+                return; // Skip 3D effect for clickable elements
+            }
+            e.preventDefault();
             if (!card.touchActive) return;
             const { rotateX, rotateY } = calculate3DTransform(e, card, true);
             apply3DTransform(card, rotateX, rotateY);
         }
         function handleTouchEnd(e) {
-            e.preventDefault();
             const card = e.currentTarget;
+            const target = e.target;
+            // Allow default behavior for clickable elements
+            if (card.classList.contains('touchable') && (target.tagName === 'A' || card.hasAttribute('onclick'))) {
+                card.touchActive = false;
+                reset3DTransform(card);
+                return;
+            }
+            e.preventDefault();
             reset3DTransform(card);
             card.touchResetTimeout = setTimeout(() => {
                 card.touchActive = false;
@@ -1580,6 +1604,15 @@
         }
         function handleTouchCancel(e) {
             handleTouchEnd(e);
+        }
+        // Handle gallery item tap to open modal
+        function handleGalleryTouchEnd(e) {
+            const card = e.currentTarget;
+            if (card.classList.contains('gallery-item') && card.hasAttribute('onclick')) {
+                const onclickAttr = card.getAttribute('onclick');
+                const galleryType = onclickAttr.match(/'([^']+)'/)[1];
+                openGalleryModal(galleryType);
+            }
         }
         // Update active navigation on scroll
         function initScrollNavigation() {
@@ -1610,6 +1643,7 @@
                 card.removeEventListener('touchstart', handleTouchStart);
                 card.removeEventListener('touchmove', handleTouchMove);
                 card.removeEventListener('touchend', handleTouchEnd);
+                card.removeEventListener('touchend', handleGalleryTouchEnd);
                 card.removeEventListener('touchcancel', handleTouchCancel);
                 card.removeEventListener('mousemove', handleMouseMove);
                 card.removeEventListener('mouseleave', handleMouseLeave);
@@ -1622,6 +1656,9 @@
                         card.addEventListener('touchmove', handleTouchMove, { passive: false });
                         card.addEventListener('touchend', handleTouchEnd, { passive: false });
                         card.addEventListener('touchcancel', handleTouchCancel, { passive: false });
+                        if (card.classList.contains('gallery-item')) {
+                            card.addEventListener('touchend', handleGalleryTouchEnd, { passive: false });
+                        }
                     } else {
                         card.addEventListener('mousemove', handleMouseMove);
                         card.addEventListener('mouseleave', handleMouseLeave);
